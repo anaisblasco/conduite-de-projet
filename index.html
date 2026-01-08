@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -9,14 +10,14 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
-    
+
     <style>
-        body { 
-            background-color: #f8f9fa; 
-            font-family: 'Montserrat', sans-serif; 
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Montserrat', sans-serif;
             color: #2c3e50;
         }
-        
+
         /* HEADER AVEC LOGO OFFICIEL */
         .top-navbar {
             background-color: white;
@@ -25,10 +26,10 @@
             position: relative;
             z-index: 100;
         }
-        
+
         .header-content { display: flex; align-items: center; }
         .navbar-logo { height: 50px; width: auto; margin-right: 15px; }
-        
+
         .header-title {
             font-weight: 700;
             color: #1e3a8a;
@@ -37,7 +38,7 @@
             letter-spacing: 1px;
             margin: 0;
         }
-        
+
         @media (max-width: 768px) {
             .header-title { font-size: 1rem; }
             .navbar-logo { height: 40px; }
@@ -223,24 +224,24 @@
     <div class="hero-section text-center">
         <div class="container">
             <p class="lead opacity-90 fw-light mb-4">Programme 2025/2026</p>
-            
+
             <div class="search-container">
                 <div class="search-group">
-                    <input type="text" id="searchInput" class="search-input" placeholder="💡 Recherchez un cours (ex: Python, VaR...) et appuyez sur Entrée">
+                    <input type="text" id="searchInput" class="search-input" placeholder="💡 Recherchez un mot clé (ex: Python, VaR...) et appuyez sur Entrée">
                     <button class="search-btn" onclick="triggerSearch()">
                         <i class="fas fa-search"></i>
                     </button>
                 </div>
-                
+
                 <button class="index-toggle-btn" type="button" data-bs-toggle="collapse" data-bs-target="#indexContainer" aria-expanded="false" aria-controls="indexContainer">
-                    <i class="fas fa-chevron-down"></i> Parcourir l'index des concepts
+                    <i class="fas fa-chevron-down"></i> Parcourir l'index
                 </button>
 
                 <div class="collapse" id="indexContainer">
                     <div id="indexContent" class="index-grid">
                         </div>
                 </div>
-                
+
                 <div id="searchFeedback" class="search-feedback text-white">
                     Résultat de la recherche :
                 </div>
@@ -249,7 +250,7 @@
     </div>
 
     <div class="container mt-5 mb-5 pt-4">
-        
+
         <div id="noResult" class="no-result-container">
             <i class="fas fa-search no-result-icon"></i>
             <h4 class="no-result-text">Aucun cours ne correspond à votre recherche.</h4>
@@ -642,28 +643,28 @@
         document.addEventListener("DOMContentLoaded", function() {
             let indexContent = document.getElementById("indexContent");
             let grouped = {};
-            
+
             // Grouper par première lettre
             rawIndex.forEach(term => {
                 let firstLetter = term.charAt(0).toUpperCase();
                 // Gestion des caractères spéciaux si besoin (É -> E)
                 firstLetter = firstLetter.normalize("NFD").replace(/[̀-ͯ]/g, "");
-                
+
                 if (!grouped[firstLetter]) grouped[firstLetter] = [];
                 grouped[firstLetter].push(term);
             });
-            
+
             // Générer le HTML
             let sortedKeys = Object.keys(grouped).sort();
             sortedKeys.forEach(letter => {
                 let groupDiv = document.createElement("div");
                 groupDiv.className = "index-letter-group";
-                
+
                 let title = document.createElement("div");
                 title.className = "index-letter-title";
                 title.innerText = letter;
                 groupDiv.appendChild(title);
-                
+
                 grouped[letter].forEach(term => {
                     let item = document.createElement("a");
                     item.className = "index-item";
@@ -671,7 +672,7 @@
                     item.onclick = function() { searchByIndex(term); };
                     groupDiv.appendChild(item);
                 });
-                
+
                 indexContent.appendChild(groupDiv);
             });
         });
@@ -680,10 +681,10 @@
             // 1. Remplir la barre de recherche
             let input = document.getElementById("searchInput");
             input.value = term;
-            
+
             // 2. Lancer la recherche
             triggerSearch();
-            
+
             // 3. Fermer l'index s'il est ouvert (optionnel, plus propre)
             let collapseElement = document.getElementById("indexContainer");
             let bsCollapse = bootstrap.Collapse.getInstance(collapseElement);
@@ -734,7 +735,7 @@
                 noResultDiv.style.display = "none";
                 listContainer.style.display = "flex";
             } else {
-                feedback.style.display = "none"; 
+                feedback.style.display = "none";
                 noResultDiv.style.display = "block";
                 listContainer.style.display = "none";
             }
@@ -754,13 +755,13 @@
             // On supprime le tout premier <br> s'il y en a un au début
             if (formattedDesc.startsWith('<br>')) formattedDesc = formattedDesc.substring(4);
             if (formattedDesc.startsWith('<br>')) formattedDesc = formattedDesc.substring(4);
-            
+
             // On injecte avec innerHTML pour que les <br> soient pris en compte
             document.getElementById('modalLongDesc').innerHTML = formattedDesc;
-            
+
             let badge = document.getElementById('modalBadge');
             badge.innerText = c.semestre + ' • ' + c.categorie;
-            
+
             if (c.couleur === 'primary') badge.className = 'badge badge-primary px-3 py-2 rounded-pill';
             else if (c.couleur === 'custom-purple') badge.className = 'badge badge-custom-purple px-3 py-2 rounded-pill';
             else if (c.couleur === 'warning') badge.className = 'badge badge-warning px-3 py-2 rounded-pill';
