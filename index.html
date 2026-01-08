@@ -1,0 +1,535 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Programme Master ISF 2025/2026</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <style>
+        body { background-color: #f0f2f5; font-family: 'Segoe UI', sans-serif; }
+
+        .header-bg {
+            background: linear-gradient(135deg, #001f3f 0%, #003366 100%);
+            color: white;
+            padding: 50px 0 80px 0;
+            margin-bottom: -40px;
+        }
+
+        .search-container {
+            max-width: 700px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 10;
+        }
+
+        .search-input {
+            border-radius: 50px;
+            border: none;
+            padding: 18px 30px;
+            font-size: 1.1rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            width: 100%;
+        }
+        .search-input:focus { outline: none; box-shadow: 0 10px 30px rgba(13, 110, 253, 0.25); }
+
+        .course-card {
+            border: none;
+            border-radius: 12px;
+            background: white;
+            transition: all 0.3s ease;
+            height: 100%;
+            border-left: 5px solid transparent;
+            cursor: pointer;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .course-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+
+        /* --- COULEURS RECTIFIÉES --- */
+
+        /* Tronc Commun : Bleu */
+        .border-primary { border-left-color: #0d6efd !important; }
+        .badge-primary { background-color: #0d6efd !important; color: white; }
+
+        /* Voie Finance : Violet */
+        .border-custom-purple { border-left-color: #8e44ad !important; }
+        .badge-custom-purple { background-color: #8e44ad !important; color: white; }
+
+        /* Voie Data : Jaune */
+        .border-warning { border-left-color: #f1c40f !important; }
+        .badge-warning { background-color: #f1c40f !important; color: black; }
+
+        .index-badge {
+            font-size: 0.7rem;
+            background-color: #eef2f7;
+            color: #4a5568;
+            padding: 4px 8px;
+            border-radius: 6px;
+            margin: 2px;
+            display: inline-block;
+        }
+
+        .modal-header { border-bottom: none; background: #f8f9fa; }
+        .modal-body { padding: 30px; }
+        .modal-title { font-weight: 800; color: #2d3748; }
+
+        .semester-sep {
+            border-radius: 14px;
+            padding: 14px 18px;
+            margin: 30px 0 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            border: 1px solid rgba(0,0,0,0.05);
+            background: white;
+        }
+        .semester-sep h2 { margin: 0; font-weight: 800; color: #1a202c; }
+        .semester-sep small { display: block; margin-top: 4px; opacity: 0.85; }
+    </style>
+</head>
+<body>
+
+    <div class="header-bg text-center">
+        <div class="container">
+            <h1 class="display-5 fw-bold mb-2">ISF Apprentissage</h1>
+            <p class="lead opacity-75">Index & Programme 2025/2026</p>
+
+            <div class="d-flex justify-content-center gap-3 mt-3 text-white small">
+                <div><span class="badge badge-primary"> </span> Tronc Commun</div>
+                <div><span class="badge badge-custom-purple"> </span> Voie Finance</div>
+                <div><span class="badge badge-warning"> </span> Voie Data</div>
+            </div>
+
+            <div class="search-container mt-4">
+                <input type="text" id="searchInput" class="search-input" placeholder="💡 Tapez un concept (ex: BERT, ACPR, VaR, Python...)" onkeyup="filterCourses()">
+            </div>
+        </div>
+    </div>
+
+    <div class="container mt-5 mb-5 pt-4">
+        <div class="row g-4" id="coursesList">
+
+            <div class="col-12"><div class="semester-sep"><h2>Semestre 3</h2><small class="text-muted">Fondamentaux</small></div></div>
+
+            <div class="col-md-6 col-lg-4 course-item" data-index="processus stochastiques emmanuel lepinette algèbre, contrôle stochastique, eds, edsr, équation de bellman, intégrale stochastique, martingales, processus stochastiques, théorie de la mesure, volatilité stochastique s3">
+                <div class="course-card border-primary" onclick="openModal(0)">
+                    <div class="p-4">
+                        <div class="d-flex justify-content-between align-items-start mb-2">
+                            <span class="badge badge-primary rounded-pill">Tronc Commun</span>
+                            <small class="text-muted"><i class="far fa-clock"></i> 30h</small>
+                        </div>
+                        <h5 class="fw-bold text-dark mb-1">Processus Stochastiques</h5>
+                        <p class="text-secondary small mb-3"><i class="fas fa-user-tie me-1"></i> Emmanuel Lepinette</p>
+                        <div class="mt-3"><span class="index-badge">Algèbre</span><span class="index-badge">Contrôle stochastique</span><span class="index-badge">EDS</span><span class="index-badge">EDSR</span><span class="index-badge">...</span></div>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="col-md-6 col-lg-4 course-item" data-index="méthodes actuarielles marc domange actuariat, calibration, copules, engagements techniques, eql, méthodes actuarielles, régression, multivariés, paramétriques, historique, risques, hors modèles, tarification, recouvrement, prospective s3">
+                <div class="course-card border-primary" onclick="openModal(1)">
+                    <div class="p-4">
+                        <div class="d-flex justify-content-between align-items-start mb-2">
+                            <span class="badge badge-primary rounded-pill">Tronc Commun</span>
+                            <small class="text-muted"><i class="far fa-clock"></i> 21h</small>
+                        </div>
+                        <h5 class="fw-bold text-dark mb-1">Méthodes Actuarielles</h5>
+                        <p class="text-secondary small mb-3"><i class="fas fa-user-tie me-1"></i> Marc Domange</p>
+                        <div class="mt-3"><span class="index-badge">Actuariat</span><span class="index-badge">Calibration</span><span class="index-badge">Copules</span><span class="index-badge">Engagements techniques</span><span class="index-badge">...</span></div>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="col-md-6 col-lg-4 course-item" data-index="assurance vie et non-vie michel germain allianz, assurance de portefeuille, assurance non-vie, assurance vie, comptabilité, garanties, hannover re, produits taux, rachats actions, réassurance, réglementation s3">
+                <div class="course-card border-primary" onclick="openModal(2)">
+                    <div class="p-4">
+                        <div class="d-flex justify-content-between align-items-start mb-2">
+                            <span class="badge badge-primary rounded-pill">Tronc Commun</span>
+                            <small class="text-muted"><i class="far fa-clock"></i> 21h</small>
+                        </div>
+                        <h5 class="fw-bold text-dark mb-1">Assurance Vie et Non-Vie</h5>
+                        <p class="text-secondary small mb-3"><i class="fas fa-user-tie me-1"></i> Michel Germain</p>
+                        <div class="mt-3"><span class="index-badge">Allianz</span><span class="index-badge">Assurance de portefeuille</span><span class="index-badge">Assurance non-vie</span><span class="index-badge">Assurance vie</span><span class="index-badge">...</span></div>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="col-md-6 col-lg-4 course-item" data-index="solvabilité 2 l. a. de lamaze acpr, banque de france, appétence, risque, bilan, cocos, dette hybride, dettes, expected shortfall, orsa, qrt, solvabilité ii, tier 1, 2, 3 s3">
+                <div class="course-card border-primary" onclick="openModal(3)">
+                    <div class="p-4">
+                        <div class="d-flex justify-content-between align-items-start mb-2">
+                            <span class="badge badge-primary rounded-pill">Tronc Commun</span>
+                            <small class="text-muted"><i class="far fa-clock"></i> 18h</small>
+                        </div>
+                        <h5 class="fw-bold text-dark mb-1">Solvabilité 2</h5>
+                        <p class="text-secondary small mb-3"><i class="fas fa-user-tie me-1"></i> L. A. De Lamaze</p>
+                        <div class="mt-3"><span class="index-badge">ACPR</span><span class="index-badge">Banque de France</span><span class="index-badge">Appétence</span><span class="index-badge">Risque</span><span class="index-badge">...</span></div>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="col-md-6 col-lg-4 course-item" data-index="gestion des risques (var) denis bertin analyse financière, beta, bloomberg, convexité, corrélation, dépendance, duration, expected shortfall, gestion risques, grecques, kpi, marchés, obligataires, natixis, prime risque, défaut, liquidité, taux, riskmetrics, var, xva s3">
+                <div class="course-card border-primary" onclick="openModal(4)">
+                    <div class="p-4">
+                        <div class="d-flex justify-content-between align-items-start mb-2">
+                            <span class="badge badge-primary rounded-pill">Tronc Commun</span>
+                            <small class="text-muted"><i class="far fa-clock"></i> 21h</small>
+                        </div>
+                        <h5 class="fw-bold text-dark mb-1">Gestion des Risques (VaR)</h5>
+                        <p class="text-secondary small mb-3"><i class="fas fa-user-tie me-1"></i> Denis Bertin</p>
+                        <div class="mt-3"><span class="index-badge">Analyse financière</span><span class="index-badge">Beta</span><span class="index-badge">Bloomberg</span><span class="index-badge">Convexité</span><span class="index-badge">...</span></div>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="col-md-6 col-lg-4 course-item" data-index="introduction au machine learning pierre brugière acp, aic, optimisation, discriminante, supervisé, non supervisé, arbres décision, bayésien, bic, bootstrap, classification, clustering, r2, data science, vapnik-chervonenkis, forêts aléatoires, gauss-markov, kernels, lasso, machine learning, mco, over-fitting, pénalisation, régression, ridge, scikit-learn, sgd, svm, validation croisée s3">
+                <div class="course-card border-primary" onclick="openModal(5)">
+                    <div class="p-4">
+                        <div class="d-flex justify-content-between align-items-start mb-2">
+                            <span class="badge badge-primary rounded-pill">Tronc Commun</span>
+                            <small class="text-muted"><i class="far fa-clock"></i> 15h</small>
+                        </div>
+                        <h5 class="fw-bold text-dark mb-1">Introduction au Machine Learning</h5>
+                        <p class="text-secondary small mb-3"><i class="fas fa-user-tie me-1"></i> Pierre Brugière</p>
+                        <div class="mt-3"><span class="index-badge">ACP</span><span class="index-badge">AIC</span><span class="index-badge">Optimisation</span><span class="index-badge">Discriminante</span><span class="index-badge">...</span></div>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="col-md-6 col-lg-4 course-item" data-index="deep learning gabriel turinici actor-critic, alignement, sentiments, ann, attention, back-propagation, bag of words, bert, bleu, cnn, deep learning, dqn, embeddings, fine-tuning, gan, glove, gpt, gym, hugging face, keras, llm, lstm, mdp, nlp, pytorch, q-learning, reinforcement learning, rnn, rouge, sarsa, stable diffusion, tensorflow, transformer, word2vec s3">
+                <div class="course-card border-primary" onclick="openModal(6)">
+                    <div class="p-4">
+                        <div class="d-flex justify-content-between align-items-start mb-2">
+                            <span class="badge badge-primary rounded-pill">Tronc Commun</span>
+                            <small class="text-muted"><i class="far fa-clock"></i> 18h</small>
+                        </div>
+                        <h5 class="fw-bold text-dark mb-1">Deep Learning</h5>
+                        <p class="text-secondary small mb-3"><i class="fas fa-user-tie me-1"></i> Gabriel Turinici</p>
+                        <div class="mt-3"><span class="index-badge">Actor-Critic</span><span class="index-badge">Alignement</span><span class="index-badge">Sentiments</span><span class="index-badge">ANN</span><span class="index-badge">...</span></div>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="col-md-6 col-lg-4 course-item" data-index="sas et python allo & lassence analyse données, business analytics, data science, eda, implémentation, python, r, regex, sas, scrapping, tableaux de bord, visualisation s3">
+                <div class="course-card border-primary" onclick="openModal(7)">
+                    <div class="p-4">
+                        <div class="d-flex justify-content-between align-items-start mb-2">
+                            <span class="badge badge-primary rounded-pill">Tronc Commun</span>
+                            <small class="text-muted"><i class="far fa-clock"></i> 24h</small>
+                        </div>
+                        <h5 class="fw-bold text-dark mb-1">SAS et Python</h5>
+                        <p class="text-secondary small mb-3"><i class="fas fa-user-tie me-1"></i> Allo & Lassence</p>
+                        <div class="mt-3"><span class="index-badge">Analyse données</span><span class="index-badge">Business analytics</span><span class="index-badge">Data Science</span><span class="index-badge">EDA</span><span class="index-badge">...</span></div>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="col-md-6 col-lg-4 course-item" data-index="crypto finance & defi remy oczan blockchain, crypto, defi, innovation, smart contracts, tokenization, tokens s3">
+                <div class="course-card border-primary" onclick="openModal(8)">
+                    <div class="p-4">
+                        <div class="d-flex justify-content-between align-items-start mb-2">
+                            <span class="badge badge-primary rounded-pill">Tronc Commun</span>
+                            <small class="text-muted"><i class="far fa-clock"></i> 15h</small>
+                        </div>
+                        <h5 class="fw-bold text-dark mb-1">Crypto Finance & DeFi</h5>
+                        <p class="text-secondary small mb-3"><i class="fas fa-user-tie me-1"></i> Remy Oczan</p>
+                        <div class="mt-3"><span class="index-badge">Blockchain</span><span class="index-badge">Crypto</span><span class="index-badge">DeFi</span><span class="index-badge">Innovation</span><span class="index-badge">...</span></div>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="col-md-6 col-lg-4 course-item" data-index="anglais des affaires catherine piola anglais, soft skills, management, cv, communication, conduite de projet, culture ia, éthique, forums, recherche emploi, soutenance s3">
+                <div class="course-card border-primary" onclick="openModal(10)">
+                    <div class="p-4">
+                        <div class="d-flex justify-content-between align-items-start mb-2">
+                            <span class="badge badge-primary rounded-pill">Tronc Commun</span>
+                            <small class="text-muted"><i class="far fa-clock"></i> 18h</small>
+                        </div>
+                        <h5 class="fw-bold text-dark mb-1">Anglais des affaires</h5>
+                        <p class="text-secondary small mb-3"><i class="fas fa-user-tie me-1"></i> Catherine Piola</p>
+                        <div class="mt-3"><span class="index-badge">Anglais</span><span class="index-badge">Soft skills</span><span class="index-badge">Management</span><span class="index-badge">CV</span><span class="index-badge">...</span></div>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="col-md-6 col-lg-4 course-item" data-index="introduction à l'apprentissage supervisé patrice bertrand analyse factorielle, discriminante, classification bayésienne, arbres de décision, forêts aléatoires, r s3">
+                <div class="course-card border-primary" onclick="openModal(104)">
+                    <div class="p-4">
+                        <div class="d-flex justify-content-between align-items-start mb-2">
+                            <span class="badge badge-primary rounded-pill">Tronc Commun</span>
+                            <small class="text-muted"><i class="far fa-clock"></i> 21h</small>
+                        </div>
+                        <h5 class="fw-bold text-dark mb-1">Introduction à l'apprentissage supervisé</h5>
+                        <p class="text-secondary small mb-3"><i class="fas fa-user-tie me-1"></i> Patrice Bertrand</p>
+                        <div class="mt-3"><span class="index-badge">Analyse factorielle</span><span class="index-badge">Discriminante</span><span class="index-badge">Classification bayésienne</span><span class="index-badge">Arbres de décision</span><span class="index-badge">...</span></div>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="col-md-6 col-lg-4 course-item" data-index="méthodes pour les modèles de régression patrice bertrand régression linéaire, mco, gauss-markov, ridge, lasso, validation croisée, aic, bic s3">
+                <div class="course-card border-primary" onclick="openModal(108)">
+                    <div class="p-4">
+                        <div class="d-flex justify-content-between align-items-start mb-2">
+                            <span class="badge badge-primary rounded-pill">Tronc Commun</span>
+                            <small class="text-muted"><i class="far fa-clock"></i> 21h</small>
+                        </div>
+                        <h5 class="fw-bold text-dark mb-1">Méthodes pour les modèles de régression</h5>
+                        <p class="text-secondary small mb-3"><i class="fas fa-user-tie me-1"></i> Patrice Bertrand</p>
+                        <div class="mt-3"><span class="index-badge">Régression linéaire</span><span class="index-badge">MCO</span><span class="index-badge">Gauss-Markov</span><span class="index-badge">Ridge</span><span class="index-badge">...</span></div>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="col-md-6 col-lg-4 course-item" data-index="modélisation risque crédit emmanuel lepinette crédit, merton, intensité, défaut, modélisation s3">
+                <div class="course-card border-custom-purple" onclick="openModal(113)">
+                    <div class="p-4">
+                        <div class="d-flex justify-content-between align-items-start mb-2">
+                            <span class="badge badge-custom-purple rounded-pill">Voie Finance</span>
+                            <small class="text-muted"><i class="far fa-clock"></i> 21h</small>
+                        </div>
+                        <h5 class="fw-bold text-dark mb-1">Modélisation Risque Crédit</h5>
+                        <p class="text-secondary small mb-3"><i class="fas fa-user-tie me-1"></i> Emmanuel Lepinette</p>
+                        <div class="mt-3"><span class="index-badge">Crédit</span><span class="index-badge">Merton</span><span class="index-badge">Intensité</span><span class="index-badge">Défaut</span><span class="index-badge">...</span></div>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="col-md-6 col-lg-4 course-item" data-index="stats & produits dérivés gabriel turinici dérivés, portefeuille, delta, volatilité, hedging s3">
+                <div class="course-card border-custom-purple" onclick="openModal(114)">
+                    <div class="p-4">
+                        <div class="d-flex justify-content-between align-items-start mb-2">
+                            <span class="badge badge-custom-purple rounded-pill">Voie Finance</span>
+                            <small class="text-muted"><i class="far fa-clock"></i> 21h</small>
+                        </div>
+                        <h5 class="fw-bold text-dark mb-1">Stats & Produits Dérivés</h5>
+                        <p class="text-secondary small mb-3"><i class="fas fa-user-tie me-1"></i> Gabriel Turinici</p>
+                        <div class="mt-3"><span class="index-badge">Dérivés</span><span class="index-badge">Portefeuille</span><span class="index-badge">Delta</span><span class="index-badge">Volatilité</span><span class="index-badge">...</span></div>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="col-12"><div class="semester-sep"><h2>Semestre 4</h2><small class="text-muted">Approfondissement & Projet</small></div></div>
+
+            <div class="col-md-6 col-lg-4 course-item" data-index="pratique des options bertrand faucher amundi, arbitrage, barbell, black-scholes, bloomberg, bnp paribas, bullet, butterfly, corporate finance, courbe des taux, dcm, delta hedging, dérivés de crédit, dérivés de taux, dividendes, dualité, ecm, etf short, futures, gestion active, gestion passive, hsbc, lgm, m&a, market making, bgm, splines, crédit, stochastiques, moindres carrés, obligations convertibles, portefeuille, prédiction, pricing, risque neutre, roll-down, segmentation, stop-loss, swaps, tracking error, volatilité, valuation s4">
+                <div class="course-card border-primary" onclick="openModal(9)">
+                    <div class="p-4">
+                        <div class="d-flex justify-content-between align-items-start mb-2">
+                            <span class="badge badge-primary rounded-pill">Tronc Commun</span>
+                            <small class="text-muted"><i class="far fa-clock"></i> 18h</small>
+                        </div>
+                        <h5 class="fw-bold text-dark mb-1">Pratique des options</h5>
+                        <p class="text-secondary small mb-3"><i class="fas fa-user-tie me-1"></i> Bertrand Faucher</p>
+                        <div class="mt-3"><span class="index-badge">Amundi</span><span class="index-badge">Arbitrage</span><span class="index-badge">Barbell</span><span class="index-badge">Black-Scholes</span><span class="index-badge">...</span></div>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="col-md-6 col-lg-4 course-item" data-index="culture financière & bloomberg p. brugière & d. bertin corporate finance, actions, dette, tier 1, 2, 3, obligations convertibles, cocos, dividendes, ecm, dcm, eql, m&a, bloomberg, bdp, bdh, spreadsheets s4">
+                <div class="course-card border-primary" onclick="openModal(11)">
+                    <div class="p-4">
+                        <div class="d-flex justify-content-between align-items-start mb-2">
+                            <span class="badge badge-primary rounded-pill">Tronc Commun</span>
+                            <small class="text-muted"><i class="far fa-clock"></i> 15h</small>
+                        </div>
+                        <h5 class="fw-bold text-dark mb-1">Culture Financière & Bloomberg</h5>
+                        <p class="text-secondary small mb-3"><i class="fas fa-user-tie me-1"></i> P. Brugière & D. Bertin</p>
+                        <div class="mt-3"><span class="index-badge">Corporate finance</span><span class="index-badge">Actions</span><span class="index-badge">Dette</span><span class="index-badge">Tier 1</span><span class="index-badge">...</span></div>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="col-md-6 col-lg-4 course-item" data-index="python et data science pierre fihey eda, préparation données, scrapping, clustering, réduction dimensions, classification, régression, deep learning, nlp, transformers, finance s4">
+                <div class="course-card border-primary" onclick="openModal(12)">
+                    <div class="p-4">
+                        <div class="d-flex justify-content-between align-items-start mb-2">
+                            <span class="badge badge-primary rounded-pill">Tronc Commun</span>
+                            <small class="text-muted"><i class="far fa-clock"></i> 18h</small>
+                        </div>
+                        <h5 class="fw-bold text-dark mb-1">Python et Data Science</h5>
+                        <p class="text-secondary small mb-3"><i class="fas fa-user-tie me-1"></i> Pierre Fihey</p>
+                        <div class="mt-3"><span class="index-badge">EDA</span><span class="index-badge">Préparation données</span><span class="index-badge">Scrapping</span><span class="index-badge">Clustering</span><span class="index-badge">...</span></div>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="col-md-6 col-lg-4 course-item" data-index="conduite de projet et mémoire o. soussan & p. brugière management projet, communication, projet, réseaux sociaux, brochure, forums, mémoire, soutenance s4">
+                <div class="course-card border-primary" onclick="openModal(18)">
+                    <div class="p-4">
+                        <div class="d-flex justify-content-between align-items-start mb-2">
+                            <span class="badge badge-primary rounded-pill">Tronc Commun</span>
+                            <small class="text-muted"><i class="far fa-clock"></i> 18h</small>
+                        </div>
+                        <h5 class="fw-bold text-dark mb-1">Conduite de projet et Mémoire</h5>
+                        <p class="text-secondary small mb-3"><i class="fas fa-user-tie me-1"></i> O. Soussan & P. Brugière</p>
+                        <div class="mt-3"><span class="index-badge">Management projet</span><span class="index-badge">Communication</span><span class="index-badge">Projet</span><span class="index-badge">Réseaux sociaux</span><span class="index-badge">...</span></div>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="col-md-6 col-lg-4 course-item" data-index="implémentation modèles multivariés emmanuel lepinette copules, dépendance, risque multivarié, sur-réplication, numérique, python s4">
+                <div class="course-card border-custom-purple" onclick="openModal(13)">
+                    <div class="p-4">
+                        <div class="d-flex justify-content-between align-items-start mb-2">
+                            <span class="badge badge-custom-purple rounded-pill">Voie Finance</span>
+                            <small class="text-muted"><i class="far fa-clock"></i> 18h</small>
+                        </div>
+                        <h5 class="fw-bold text-dark mb-1">Implémentation modèles multivariés</h5>
+                        <p class="text-secondary small mb-3"><i class="fas fa-user-tie me-1"></i> Emmanuel Lepinette</p>
+                        <div class="mt-3"><span class="index-badge">Copules</span><span class="index-badge">Dépendance</span><span class="index-badge">Risque multivarié</span><span class="index-badge">Sur-réplication</span><span class="index-badge">...</span></div>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="col-md-6 col-lg-4 course-item" data-index="modélisation courbe de taux imen ben tahar taux, produits de taux, calcul stochastique, lgm, bgm, jamshidian, volatilité stochastique s4">
+                <div class="course-card border-custom-purple" onclick="openModal(14)">
+                    <div class="p-4">
+                        <div class="d-flex justify-content-between align-items-start mb-2">
+                            <span class="badge badge-custom-purple rounded-pill">Voie Finance</span>
+                            <small class="text-muted"><i class="far fa-clock"></i> 21h</small>
+                        </div>
+                        <h5 class="fw-bold text-dark mb-1">Modélisation courbe de taux</h5>
+                        <p class="text-secondary small mb-3"><i class="fas fa-user-tie me-1"></i> Imen Ben Tahar</p>
+                        <div class="mt-3"><span class="index-badge">Taux</span><span class="index-badge">Produits de taux</span><span class="index-badge">Calcul stochastique</span><span class="index-badge">LGM</span><span class="index-badge">...</span></div>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="col-md-6 col-lg-4 course-item" data-index="data science pour le business gharbi, zheng, fisz business, data, cas d'usage, entreprise s4">
+                <div class="course-card border-warning" onclick="openModal(207)">
+                    <div class="p-4">
+                        <div class="d-flex justify-content-between align-items-start mb-2">
+                            <span class="badge badge-warning rounded-pill">Voie Data</span>
+                            <small class="text-muted"><i class="far fa-clock"></i> 21h</small>
+                        </div>
+                        <h5 class="fw-bold text-dark mb-1">Data Science pour le Business</h5>
+                        <p class="text-secondary small mb-3"><i class="fas fa-user-tie me-1"></i> Gharbi, Zheng, Fisz</p>
+                        <div class="mt-3"><span class="index-badge">Business</span><span class="index-badge">Data</span><span class="index-badge">Cas d'usage</span><span class="index-badge">Entreprise</span></div>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="col-md-6 col-lg-4 course-item" data-index="machine learning & nlp didier jeannel nlp, tf-idf, embeddings, word2vec, glove, transformers, bert, gpt, t5, hugging face, rouge, bleu, meteor s4">
+                <div class="course-card border-warning" onclick="openModal(15)">
+                    <div class="p-4">
+                        <div class="d-flex justify-content-between align-items-start mb-2">
+                            <span class="badge badge-warning rounded-pill">Voie Data</span>
+                            <small class="text-muted"><i class="far fa-clock"></i> 18h</small>
+                        </div>
+                        <h5 class="fw-bold text-dark mb-1">Machine Learning & NLP</h5>
+                        <p class="text-secondary small mb-3"><i class="fas fa-user-tie me-1"></i> Didier Jeannel</p>
+                        <div class="mt-3"><span class="index-badge">NLP</span><span class="index-badge">TF-IDF</span><span class="index-badge">Embeddings</span><span class="index-badge">Word2Vec</span><span class="index-badge">...</span></div>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="col-md-6 col-lg-4 course-item" data-index="recent advances in data sciences theo lopes quintas papers, pytorch, calibration, tokenization, llm, soutenance, notebook, latex s4">
+                <div class="course-card border-warning" onclick="openModal(16)">
+                    <div class="p-4">
+                        <div class="d-flex justify-content-between align-items-start mb-2">
+                            <span class="badge badge-warning rounded-pill">Voie Data</span>
+                            <small class="text-muted"><i class="far fa-clock"></i> 21h</small>
+                        </div>
+                        <h5 class="fw-bold text-dark mb-1">Recent Advances in Data Sciences</h5>
+                        <p class="text-secondary small mb-3"><i class="fas fa-user-tie me-1"></i> Theo Lopes Quintas</p>
+                        <div class="mt-3"><span class="index-badge">Papers</span><span class="index-badge">PyTorch</span><span class="index-badge">Calibration</span><span class="index-badge">Tokenization</span><span class="index-badge">...</span></div>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="col-md-6 col-lg-4 course-item" data-index="renforcement learning gabriel turinici mdp, bellman, hjb, bandits, q-learning, dqn, sarsa, actor-critic, gymnasium, alignement s4">
+                <div class="course-card border-warning" onclick="openModal(17)">
+                    <div class="p-4">
+                        <div class="d-flex justify-content-between align-items-start mb-2">
+                            <span class="badge badge-warning rounded-pill">Voie Data</span>
+                            <small class="text-muted"><i class="far fa-clock"></i> 21h</small>
+                        </div>
+                        <h5 class="fw-bold text-dark mb-1">Renforcement Learning</h5>
+                        <p class="text-secondary small mb-3"><i class="fas fa-user-tie me-1"></i> Gabriel Turinici</p>
+                        <div class="mt-3"><span class="index-badge">MDP</span><span class="index-badge">Bellman</span><span class="index-badge">HJB</span><span class="index-badge">Bandits</span><span class="index-badge">...</span></div>
+                    </div>
+                </div>
+            </div>
+    
+        </div>
+        <div id="noResult" class="text-center text-muted mt-5" style="display:none;">
+            <h4>😕 Aucun cours ne correspond à votre recherche.</h4>
+        </div>
+    </div>
+
+    <div class="modal fade" id="courseModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title fs-4" id="modalTitle">Titre</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="d-flex align-items-center mb-4">
+                        <span id="modalBadge" class="badge me-3 px-3 py-2">Cat</span>
+                        <h6 class="mb-0 text-secondary"><i class="fas fa-chalkboard-teacher me-2"></i><span id="modalProf">Prof</span></h6>
+                    </div>
+
+                    <h5 class="fw-bold mb-2">Description</h5>
+                    <p id="modalDesc" class="text-muted mb-4"></p>
+
+                    <h5 class="fw-bold mb-2">Détails (Site)</h5>
+                    <p id="modalDescSite" class="text-muted mb-4"></p>
+
+                    <div class="bg-light p-3 rounded-3 border">
+                        <h6 class="fw-bold text-dark mb-3"><i class="fas fa-tags me-2"></i>Index & Mots-clés associés</h6>
+                        <div id="modalTags"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        const allCourses = [{"id": 0, "semestre": "S3", "categorie": "Tronc Commun", "titre": "Processus Stochastiques", "duree": "30h", "prof": "Emmanuel Lepinette", "couleur": "primary", "description": "Calcul stochastique, Mouvement Brownien, Martingales.", "description_site": "Calcul stochastique et outils de mod\u00e9lisation (martingales, EDS) avec applications en finance.", "mots_cles": "Alg\u00e8bre, Contr\u00f4le stochastique, EDS, EDSR, \u00c9quation de Bellman, Int\u00e9grale stochastique, Martingales, Processus stochastiques, Th\u00e9orie de la mesure, Volatilit\u00e9 stochastique", "index_list": ["Alg\u00e8bre", "Contr\u00f4le stochastique", "EDS", "EDSR", "\u00c9quation de Bellman", "Int\u00e9grale stochastique", "Martingales", "Processus stochastiques", "Th\u00e9orie de la mesure", "Volatilit\u00e9 stochastique"], "index_string": "Alg\u00e8bre, Contr\u00f4le stochastique, EDS, EDSR, \u00c9quation de Bellman, Int\u00e9grale stochastique, Martingales, Processus stochastiques, Th\u00e9orie de la mesure, Volatilit\u00e9 stochastique"}, {"id": 1, "semestre": "S3", "categorie": "Tronc Commun", "titre": "M\u00e9thodes Actuarielles", "duree": "21h", "prof": "Marc Domange", "couleur": "primary", "description": "Provisionnement, Tarification, Risques.", "description_site": "Provisionnement, tarification et quantification des risques avec mise en pratique sur cas actuarielles.", "mots_cles": "Actuariat, Calibration, Copules, Engagements techniques, EQL, M\u00e9thodes actuarielles, R\u00e9gression, Multivari\u00e9s, Param\u00e9triques, Historique, Risques, Hors mod\u00e8les, Tarification, Recouvrement, Prospective", "index_list": ["Actuariat", "Calibration", "Copules", "Engagements techniques", "EQL", "M\u00e9thodes actuarielles", "R\u00e9gression", "Multivari\u00e9s", "Param\u00e9triques", "Historique", "Risques", "Hors mod\u00e8les", "Tarification", "Recouvrement", "Prospective"], "index_string": "Actuariat, Calibration, Copules, Engagements techniques, EQL, M\u00e9thodes actuarielles, R\u00e9gression, Multivari\u00e9s, Param\u00e9triques, Historique, Risques, Hors mod\u00e8les, Tarification, Recouvrement, Prospective"}, {"id": 2, "semestre": "S3", "categorie": "Tronc Commun", "titre": "Assurance Vie et Non-Vie", "duree": "21h", "prof": "Michel Germain", "couleur": "primary", "description": "M\u00e9canismes fondamentaux de l'assurance.", "description_site": "Panorama des m\u00e9canismes de l\u2019assurance (vie / non-vie) et de la r\u00e9glementation associ\u00e9e.", "mots_cles": "Allianz, Assurance de portefeuille, Assurance non-vie, Assurance vie, Comptabilit\u00e9, Garanties, Hannover Re, Produits taux, Rachats actions, R\u00e9assurance, R\u00e9glementation", "index_list": ["Allianz", "Assurance de portefeuille", "Assurance non-vie", "Assurance vie", "Comptabilit\u00e9", "Garanties", "Hannover Re", "Produits taux", "Rachats actions", "R\u00e9assurance", "R\u00e9glementation"], "index_string": "Allianz, Assurance de portefeuille, Assurance non-vie, Assurance vie, Comptabilit\u00e9, Garanties, Hannover Re, Produits taux, Rachats actions, R\u00e9assurance, R\u00e9glementation"}, {"id": 3, "semestre": "S3", "categorie": "Tronc Commun", "titre": "Solvabilit\u00e9 2", "duree": "18h", "prof": "L. A. De Lamaze", "couleur": "primary", "description": "R\u00e9glementation prudentielle et gestion des fonds propres.", "description_site": "Cadre prudentiel Solvabilit\u00e9 II : exigences, facteurs de risque, ORSA/QRT et pilotage des fonds propres.", "mots_cles": "ACPR, Banque de France, App\u00e9tence, Risque, Bilan, Cocos, Dette hybride, Dettes, Expected Shortfall, ORSA, QRT, Solvabilit\u00e9 II, Tier 1, 2, 3", "index_list": ["ACPR", "Banque de France", "App\u00e9tence", "Risque", "Bilan", "Cocos", "Dette hybride", "Dettes", "Expected Shortfall", "ORSA", "QRT", "Solvabilit\u00e9 II", "Tier 1", "2", "3"], "index_string": "ACPR, Banque de France, App\u00e9tence, Risque, Bilan, Cocos, Dette hybride, Dettes, Expected Shortfall, ORSA, QRT, Solvabilit\u00e9 II, Tier 1, 2, 3"}, {"id": 4, "semestre": "S3", "categorie": "Tronc Commun", "titre": "Gestion des Risques (VaR)", "duree": "21h", "prof": "Denis Bertin", "couleur": "primary", "description": "Mesure et gestion des risques de march\u00e9.", "description_site": "Mesures de risque (VaR/ES), facteurs de risque, backtesting et cas march\u00e9s (taux, cr\u00e9dit, liquidit\u00e9).", "mots_cles": "Analyse financi\u00e8re, Beta, Bloomberg, Convexit\u00e9, Corr\u00e9lation, D\u00e9pendance, Duration, Expected Shortfall, Gestion risques, Grecques, KPI, March\u00e9s, Obligataires, Natixis, Prime risque, D\u00e9faut, Liquidit\u00e9, Taux, RiskMetrics, VaR, xVA", "index_list": ["Analyse financi\u00e8re", "Beta", "Bloomberg", "Convexit\u00e9", "Corr\u00e9lation", "D\u00e9pendance", "Duration", "Expected Shortfall", "Gestion risques", "Grecques", "KPI", "March\u00e9s", "Obligataires", "Natixis", "Prime risque", "D\u00e9faut", "Liquidit\u00e9", "Taux", "RiskMetrics", "VaR", "xVA"], "index_string": "Analyse financi\u00e8re, Beta, Bloomberg, Convexit\u00e9, Corr\u00e9lation, D\u00e9pendance, Duration, Expected Shortfall, Gestion risques, Grecques, KPI, March\u00e9s, Obligataires, Natixis, Prime risque, D\u00e9faut, Liquidit\u00e9, Taux, RiskMetrics, VaR, xVA"}, {"id": 5, "semestre": "S3", "categorie": "Tronc Commun", "titre": "Introduction au Machine Learning", "duree": "15h", "prof": "Pierre Brugi\u00e8re", "couleur": "primary", "description": "Algorithmes d'apprentissage supervis\u00e9 et non-supervis\u00e9.", "description_site": "M\u00e9thodes de ML pour r\u00e9gression et classification, avec focus sur g\u00e9n\u00e9ralisation/validation et mise en \u0153uvre.", "mots_cles": "ACP, AIC, Optimisation, Discriminante, Supervis\u00e9, Non supervis\u00e9, Arbres d\u00e9cision, Bay\u00e9sien, BIC, Bootstrap, Classification, Clustering, R2, Data Science, Vapnik-Chervonenkis, For\u00eats al\u00e9atoires, Gauss-Markov, Kernels, Lasso, Machine Learning, MCO, Over-fitting, P\u00e9nalisation, R\u00e9gression, Ridge, Scikit-Learn, SGD, SVM, Validation crois\u00e9e", "index_list": ["ACP", "AIC", "Optimisation", "Discriminante", "Supervis\u00e9", "Non supervis\u00e9", "Arbres d\u00e9cision", "Bay\u00e9sien", "BIC", "Bootstrap", "Classification", "Clustering", "R2", "Data Science", "Vapnik-Chervonenkis", "For\u00eats al\u00e9atoires", "Gauss-Markov", "Kernels", "Lasso", "Machine Learning", "MCO", "Over-fitting", "P\u00e9nalisation", "R\u00e9gression", "Ridge", "Scikit-Learn", "SGD", "SVM", "Validation crois\u00e9e"], "index_string": "ACP, AIC, Optimisation, Discriminante, Supervis\u00e9, Non supervis\u00e9, Arbres d\u00e9cision, Bay\u00e9sien, BIC, Bootstrap, Classification, Clustering, R2, Data Science, Vapnik-Chervonenkis, For\u00eats al\u00e9atoires, Gauss-Markov, Kernels, Lasso, Machine Learning, MCO, Over-fitting, P\u00e9nalisation, R\u00e9gression, Ridge, Scikit-Learn, SGD, SVM, Validation crois\u00e9e"}, {"id": 6, "semestre": "S3", "categorie": "Tronc Commun", "titre": "Deep Learning", "duree": "18h", "prof": "Gabriel Turinici", "couleur": "primary", "description": "R\u00e9seaux de neurones et IA avanc\u00e9e.", "description_site": "Panorama du deep learning (supervis\u00e9, non supervis\u00e9, RL), CNN/RNN/Transformers et pratique PyTorch/TensorFlow.", "mots_cles": "Actor-Critic, Alignement, Sentiments, ANN, Attention, Back-propagation, Bag of Words, BERT, BLEU, CNN, Deep Learning, DQN, Embeddings, Fine-tuning, GAN, GloVe, GPT, Gym, Hugging Face, Keras, LLM, LSTM, MDP, NLP, PyTorch, Q-learning, Reinforcement Learning, RNN, ROUGE, SARSA, Stable Diffusion, TensorFlow, Transformer, Word2Vec", "index_list": ["Actor-Critic", "Alignement", "Sentiments", "ANN", "Attention", "Back-propagation", "Bag of Words", "BERT", "BLEU", "CNN", "Deep Learning", "DQN", "Embeddings", "Fine-tuning", "GAN", "GloVe", "GPT", "Gym", "Hugging Face", "Keras", "LLM", "LSTM", "MDP", "NLP", "PyTorch", "Q-learning", "Reinforcement Learning", "RNN", "ROUGE", "SARSA", "Stable Diffusion", "TensorFlow", "Transformer", "Word2Vec"], "index_string": "Actor-Critic, Alignement, Sentiments, ANN, Attention, Back-propagation, Bag of Words, BERT, BLEU, CNN, Deep Learning, DQN, Embeddings, Fine-tuning, GAN, GloVe, GPT, Gym, Hugging Face, Keras, LLM, LSTM, MDP, NLP, PyTorch, Q-learning, Reinforcement Learning, RNN, ROUGE, SARSA, Stable Diffusion, TensorFlow, Transformer, Word2Vec"}, {"id": 7, "semestre": "S3", "categorie": "Tronc Commun", "titre": "SAS et Python", "duree": "24h", "prof": "Allo & Lassence", "couleur": "primary", "description": "Programmation statistique et manipulation de donn\u00e9es.", "description_site": "Outils data (SAS/Python), pr\u00e9paration/visualisation et cas d\u2019usage data science orient\u00e9s entreprise.", "mots_cles": "Analyse donn\u00e9es, Business analytics, Data Science, EDA, Impl\u00e9mentation, Python, R, Regex, SAS, Scrapping, Tableaux de bord, Visualisation", "index_list": ["Analyse donn\u00e9es", "Business analytics", "Data Science", "EDA", "Impl\u00e9mentation", "Python", "R", "Regex", "SAS", "Scrapping", "Tableaux de bord", "Visualisation"], "index_string": "Analyse donn\u00e9es, Business analytics, Data Science, EDA, Impl\u00e9mentation, Python, R, Regex, SAS, Scrapping, Tableaux de bord, Visualisation"}, {"id": 8, "semestre": "S3", "categorie": "Tronc Commun", "titre": "Crypto Finance & DeFi", "duree": "15h", "prof": "Remy Oczan", "couleur": "primary", "description": "Blockchain et nouvelle \u00e8re des services financiers.", "description_site": "Finance d\u00e9centralis\u00e9e : crypto-actifs, protocoles DeFi, services financiers innovants et smart contracts.", "mots_cles": "Blockchain, Crypto, DeFi, Innovation, Smart contracts, Tokenization, Tokens", "index_list": ["Blockchain", "Crypto", "DeFi", "Innovation", "Smart contracts", "Tokenization", "Tokens"], "index_string": "Blockchain, Crypto, DeFi, Innovation, Smart contracts, Tokenization, Tokens"}, {"id": 10, "semestre": "S3", "categorie": "Tronc Commun", "titre": "Anglais des affaires", "duree": "18h", "prof": "Catherine Piola", "couleur": "primary", "description": "Soft skills, anglais des affaires et conf\u00e9rences.", "description_site": "Anglais des affaires et communication (\u00e9crit/oral), projet de communication et pr\u00e9paration/soutenance du m\u00e9moire.", "mots_cles": "Anglais, Soft skills, Management, CV, Communication, Conduite de projet, Culture IA, \u00c9thique, Forums, Recherche emploi, Soutenance", "index_list": ["Anglais", "Soft skills", "Management", "CV", "Communication", "Conduite de projet", "Culture IA", "\u00c9thique", "Forums", "Recherche emploi", "Soutenance"], "index_string": "Anglais, Soft skills, Management, CV, Communication, Conduite de projet, Culture IA, \u00c9thique, Forums, Recherche emploi, Soutenance"}, {"id": 104, "semestre": "S3", "categorie": "Tronc Commun", "titre": "Introduction \u00e0 l'apprentissage supervis\u00e9", "duree": "21h", "prof": "Patrice Bertrand", "couleur": "primary", "description": "Classification supervis\u00e9e.", "description_site": "Analyse discriminante, classification bay\u00e9sienne, arbres de d\u00e9cision, for\u00eats al\u00e9atoires.", "mots_cles": "Analyse factorielle, Discriminante, Classification bay\u00e9sienne, Arbres de d\u00e9cision, For\u00eats al\u00e9atoires, R", "index_list": ["Analyse factorielle", "Discriminante", "Classification bay\u00e9sienne", "Arbres de d\u00e9cision", "For\u00eats al\u00e9atoires", "R"], "index_string": "Analyse factorielle, Discriminante, Classification bay\u00e9sienne, Arbres de d\u00e9cision, For\u00eats al\u00e9atoires, R"}, {"id": 108, "semestre": "S3", "categorie": "Tronc Commun", "titre": "M\u00e9thodes pour les mod\u00e8les de r\u00e9gression", "duree": "21h", "prof": "Patrice Bertrand", "couleur": "primary", "description": "R\u00e9gression lin\u00e9aire et p\u00e9nalis\u00e9e.", "description_site": "R\u00e9gression lin\u00e9aire, MCO, Gauss-Markov, Ridge, Lasso, Validation crois\u00e9e, AIC, BIC.", "mots_cles": "R\u00e9gression lin\u00e9aire, MCO, Gauss-Markov, Ridge, Lasso, Validation crois\u00e9e, AIC, BIC", "index_list": ["R\u00e9gression lin\u00e9aire", "MCO", "Gauss-Markov", "Ridge", "Lasso", "Validation crois\u00e9e", "AIC", "BIC"], "index_string": "R\u00e9gression lin\u00e9aire, MCO, Gauss-Markov, Ridge, Lasso, Validation crois\u00e9e, AIC, BIC"}, {"id": 113, "semestre": "S3", "categorie": "Voie Finance", "titre": "Mod\u00e9lisation Risque Cr\u00e9dit", "duree": "21h", "prof": "Emmanuel Lepinette", "couleur": "custom-purple", "description": "Le mod\u00e8le de Merton, les mod\u00e8les \u00e0 intensit\u00e9.", "description_site": "Mod\u00e9lisation du risque de cr\u00e9dit : approche structurelle (Merton) et approche par intensit\u00e9.", "mots_cles": "Cr\u00e9dit, Merton, Intensit\u00e9, D\u00e9faut, Mod\u00e9lisation", "index_list": ["Cr\u00e9dit", "Merton", "Intensit\u00e9", "D\u00e9faut", "Mod\u00e9lisation"], "index_string": "Cr\u00e9dit, Merton, Intensit\u00e9, D\u00e9faut, Mod\u00e9lisation"}, {"id": 114, "semestre": "S3", "categorie": "Voie Finance", "titre": "Stats & Produits D\u00e9riv\u00e9s", "duree": "21h", "prof": "Gabriel Turinici", "couleur": "custom-purple", "description": "Gestion de portefeuille et d\u00e9riv\u00e9s.", "description_site": "Gestion de portefeuille, Valuation de d\u00e9riv\u00e9s, Delta hedging, Assurance de portefeuille (CPPI) et Trading de volatilit\u00e9.", "mots_cles": "D\u00e9riv\u00e9s, Portefeuille, Delta, Volatilit\u00e9, Hedging", "index_list": ["D\u00e9riv\u00e9s", "Portefeuille", "Delta", "Volatilit\u00e9", "Hedging"], "index_string": "D\u00e9riv\u00e9s, Portefeuille, Delta, Volatilit\u00e9, Hedging"}, {"id": 9, "semestre": "S4", "categorie": "Tronc Commun", "titre": "Pratique des options", "duree": "18h", "prof": "Bertrand Faucher", "couleur": "primary", "description": "Strat\u00e9gies de trading et produits d\u00e9riv\u00e9s.", "description_site": "Mise en situation market making, pricing d\u2019options (vanilles/complexes) et gestion des risques au-del\u00e0 des grecques.", "mots_cles": "Amundi, Arbitrage, Barbell, Black-Scholes, Bloomberg, BNP Paribas, Bullet, Butterfly, Corporate Finance, Courbe des taux, DCM, Delta hedging, D\u00e9riv\u00e9s de cr\u00e9dit, D\u00e9riv\u00e9s de taux, Dividendes, Dualit\u00e9, ECM, ETF short, Futures, Gestion active, Gestion passive, HSBC, LGM, M&A, Market making, BGM, Splines, Cr\u00e9dit, Stochastiques, Moindres carr\u00e9s, Obligations convertibles, Portefeuille, Pr\u00e9diction, Pricing, Risque neutre, Roll-down, Segmentation, Stop-loss, Swaps, Tracking error, Volatilit\u00e9, Valuation", "index_list": ["Amundi", "Arbitrage", "Barbell", "Black-Scholes", "Bloomberg", "BNP Paribas", "Bullet", "Butterfly", "Corporate Finance", "Courbe des taux", "DCM", "Delta hedging", "D\u00e9riv\u00e9s de cr\u00e9dit", "D\u00e9riv\u00e9s de taux", "Dividendes", "Dualit\u00e9", "ECM", "ETF short", "Futures", "Gestion active", "Gestion passive", "HSBC", "LGM", "M&A", "Market making", "BGM", "Splines", "Cr\u00e9dit", "Stochastiques", "Moindres carr\u00e9s", "Obligations convertibles", "Portefeuille", "Pr\u00e9diction", "Pricing", "Risque neutre", "Roll-down", "Segmentation", "Stop-loss", "Swaps", "Tracking error", "Volatilit\u00e9", "Valuation"], "index_string": "Amundi, Arbitrage, Barbell, Black-Scholes, Bloomberg, BNP Paribas, Bullet, Butterfly, Corporate Finance, Courbe des taux, DCM, Delta hedging, D\u00e9riv\u00e9s de cr\u00e9dit, D\u00e9riv\u00e9s de taux, Dividendes, Dualit\u00e9, ECM, ETF short, Futures, Gestion active, Gestion passive, HSBC, LGM, M&A, Market making, BGM, Splines, Cr\u00e9dit, Stochastiques, Moindres carr\u00e9s, Obligations convertibles, Portefeuille, Pr\u00e9diction, Pricing, Risque neutre, Roll-down, Segmentation, Stop-loss, Swaps, Tracking error, Volatilit\u00e9, Valuation"}, {"id": 11, "semestre": "S4", "categorie": "Tronc Commun", "titre": "Culture Financi\u00e8re & Bloomberg", "duree": "15h", "prof": "P. Brugi\u00e8re & D. Bertin", "couleur": "primary", "description": "Corporate finance + Bloomberg.", "description_site": "Notions de corporate finance (titres, actions/dette, convertibles, op\u00e9rations en capital) + pratiques Bloomberg (BDP/BDH, spreadsheets).", "mots_cles": "Corporate finance, Actions, Dette, Tier 1, 2, 3, Obligations convertibles, Cocos, Dividendes, ECM, DCM, EQL, M&A, Bloomberg, BDP, BDH, Spreadsheets", "index_list": ["Corporate finance", "Actions", "Dette", "Tier 1", "2", "3", "Obligations convertibles", "Cocos", "Dividendes", "ECM", "DCM", "EQL", "M&A", "Bloomberg", "BDP", "BDH", "Spreadsheets"], "index_string": "Corporate finance, Actions, Dette, Tier 1, 2, 3, Obligations convertibles, Cocos, Dividendes, ECM, DCM, EQL, M&A, Bloomberg, BDP, BDH, Spreadsheets"}, {"id": 12, "semestre": "S4", "categorie": "Tronc Commun", "titre": "Python et Data Science", "duree": "18h", "prof": "Pierre Fihey", "couleur": "primary", "description": "Projet DS appliqu\u00e9 \u00e0 la finance.", "description_site": "Pr\u00e9paration des donn\u00e9es/EDA, scrapping, clustering, r\u00e9duction de dimension, classification, r\u00e9gression, DL et NLP avec projet finance.", "mots_cles": "EDA, Pr\u00e9paration donn\u00e9es, Scrapping, Clustering, R\u00e9duction dimensions, Classification, R\u00e9gression, Deep Learning, NLP, Transformers, Finance", "index_list": ["EDA", "Pr\u00e9paration donn\u00e9es", "Scrapping", "Clustering", "R\u00e9duction dimensions", "Classification", "R\u00e9gression", "Deep Learning", "NLP", "Transformers", "Finance"], "index_string": "EDA, Pr\u00e9paration donn\u00e9es, Scrapping, Clustering, R\u00e9duction dimensions, Classification, R\u00e9gression, Deep Learning, NLP, Transformers, Finance"}, {"id": 18, "semestre": "S4", "categorie": "Tronc Commun", "titre": "Conduite de projet et M\u00e9moire", "duree": "18h", "prof": "O. Soussan & P. Brugi\u00e8re", "couleur": "primary", "description": "Projet communication + M\u00e9moire.", "description_site": "Management de projet, communication (site/r\u00e9seaux) et soutenance du m\u00e9moire d\u2019apprentissage.", "mots_cles": "Management projet, Communication, Projet, R\u00e9seaux sociaux, Brochure, Forums, M\u00e9moire, Soutenance", "index_list": ["Management projet", "Communication", "Projet", "R\u00e9seaux sociaux", "Brochure", "Forums", "M\u00e9moire", "Soutenance"], "index_string": "Management projet, Communication, Projet, R\u00e9seaux sociaux, Brochure, Forums, M\u00e9moire, Soutenance"}, {"id": 13, "semestre": "S4", "categorie": "Voie Finance", "titre": "Impl\u00e9mentation mod\u00e8les multivari\u00e9s", "duree": "18h", "prof": "Emmanuel Lepinette", "couleur": "custom-purple", "description": "Copules et d\u00e9pendance.", "description_site": "D\u00e9pendance via copules, applications, mesures de risque multivari\u00e9es et exemples d\u2019impl\u00e9mentations num\u00e9riques.", "mots_cles": "Copules, D\u00e9pendance, Risque multivari\u00e9, Sur-r\u00e9plication, Num\u00e9rique, Python", "index_list": ["Copules", "D\u00e9pendance", "Risque multivari\u00e9", "Sur-r\u00e9plication", "Num\u00e9rique", "Python"], "index_string": "Copules, D\u00e9pendance, Risque multivari\u00e9, Sur-r\u00e9plication, Num\u00e9rique, Python"}, {"id": 14, "semestre": "S4", "categorie": "Voie Finance", "titre": "Mod\u00e9lisation courbe de taux", "duree": "21h", "prof": "Imen Ben Tahar", "couleur": "custom-purple", "description": "Mod\u00e8les de taux continus.", "description_site": "Calcul stochastique, produits de taux, mod\u00e8le LGM, BGM/Jamshidian et volatilit\u00e9 stochastique.", "mots_cles": "Taux, Produits de taux, Calcul stochastique, LGM, BGM, Jamshidian, Volatilit\u00e9 stochastique", "index_list": ["Taux", "Produits de taux", "Calcul stochastique", "LGM", "BGM", "Jamshidian", "Volatilit\u00e9 stochastique"], "index_string": "Taux, Produits de taux, Calcul stochastique, LGM, BGM, Jamshidian, Volatilit\u00e9 stochastique"}, {"id": 207, "semestre": "S4", "categorie": "Voie Data", "titre": "Data Science pour le Business", "duree": "21h", "prof": "Gharbi, Zheng, Fisz", "couleur": "warning", "description": "Data Science appliqu\u00e9e au business.", "description_site": "Applications concr\u00e8tes de la Data Science aux probl\u00e9matiques business.", "mots_cles": "Business, Data, Cas d'usage, Entreprise", "index_list": ["Business", "Data", "Cas d'usage", "Entreprise"], "index_string": "Business, Data, Cas d'usage, Entreprise"}, {"id": 15, "semestre": "S4", "categorie": "Voie Data", "titre": "Machine Learning & NLP", "duree": "18h", "prof": "Didier Jeannel", "couleur": "warning", "description": "NLP + Transformers.", "description_site": "BoW/TF-IDF, embeddings, Transformers (BERT/GPT/T5), pipelines, \u00e9valuation et mise en pratique Hugging Face.", "mots_cles": "NLP, TF-IDF, Embeddings, Word2Vec, GloVe, Transformers, BERT, GPT, T5, Hugging Face, ROUGE, BLEU, METEOR", "index_list": ["NLP", "TF-IDF", "Embeddings", "Word2Vec", "GloVe", "Transformers", "BERT", "GPT", "T5", "Hugging Face", "ROUGE", "BLEU", "METEOR"], "index_string": "NLP, TF-IDF, Embeddings, Word2Vec, GloVe, Transformers, BERT, GPT, T5, Hugging Face, ROUGE, BLEU, METEOR"}, {"id": 16, "semestre": "S4", "categorie": "Voie Data", "titre": "Recent Advances in Data Sciences", "duree": "21h", "prof": "Theo Lopes Quintas", "couleur": "warning", "description": "Lecture d\u2019articles de recherche.", "description_site": "S\u00e9ances th\u00e9matiques (init, calibration, optim moderne, LLM, tokenization) + TP PyTorch et soutenance.", "mots_cles": "Papers, PyTorch, Calibration, Tokenization, LLM, Soutenance, Notebook, LaTeX", "index_list": ["Papers", "PyTorch", "Calibration", "Tokenization", "LLM", "Soutenance", "Notebook", "LaTeX"], "index_string": "Papers, PyTorch, Calibration, Tokenization, LLM, Soutenance, Notebook, LaTeX"}, {"id": 17, "semestre": "S4", "categorie": "Voie Data", "titre": "Renforcement Learning", "duree": "21h", "prof": "Gabriel Turinici", "couleur": "warning", "description": "RL / Deep RL.", "description_site": "MDP, \u00e9quations de Bellman/HJB, bandits, Q-learning/DQN, SARSA, Actor\u2013Critic et impl\u00e9mentations Python.", "mots_cles": "MDP, Bellman, HJB, Bandits, Q-learning, DQN, SARSA, Actor-Critic, Gymnasium, Alignement", "index_list": ["MDP", "Bellman", "HJB", "Bandits", "Q-learning", "DQN", "SARSA", "Actor-Critic", "Gymnasium", "Alignement"], "index_string": "MDP, Bellman, HJB, Bandits, Q-learning, DQN, SARSA, Actor-Critic, Gymnasium, Alignement"}];
+
+        function filterCourses() {
+            let input = document.getElementById('searchInput').value.toLowerCase();
+            let items = document.getElementsByClassName('course-item');
+            let visibleCount = 0;
+
+            for (let i = 0; i < items.length; i++) {
+                let indexContent = items[i].getAttribute('data-index');
+                if (indexContent.includes(input)) {
+                    items[i].style.display = "";
+                    visibleCount++;
+                } else {
+                    items[i].style.display = "none";
+                }
+            }
+            document.getElementById('noResult').style.display = (visibleCount === 0) ? "block" : "none";
+        }
+
+        function openModal(id) {
+            let c = allCourses.find(x => x.id === id);
+
+            document.getElementById('modalTitle').innerText = c.titre;
+            document.getElementById('modalProf').innerText = c.prof;
+            document.getElementById('modalDesc').innerText = c.description;
+            document.getElementById('modalDescSite').innerText = c.description_site || "";
+
+            let badge = document.getElementById('modalBadge');
+            badge.innerText = c.semestre + ' - ' + c.categorie;
+
+            // Gestion des couleurs dans la modale
+            if (c.couleur === 'primary') badge.className = 'badge badge-primary me-3 px-3 py-2';
+            else if (c.couleur === 'custom-purple') badge.className = 'badge badge-custom-purple me-3 px-3 py-2';
+            else if (c.couleur === 'warning') badge.className = 'badge badge-warning me-3 px-3 py-2';
+            else badge.className = 'badge bg-secondary me-3 px-3 py-2';
+
+            let tagsHtml = c.index_list.map(tag => `<span class="badge bg-white text-dark border me-1 mb-1 shadow-sm fw-normal">${tag}</span>`).join('');
+            document.getElementById('modalTags').innerHTML = tagsHtml;
+
+            new bootstrap.Modal(document.getElementById('courseModal')).show();
+        }
+    </script>
+</body>
+</html>
