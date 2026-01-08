@@ -7,27 +7,46 @@
     <title>Programme Master ISF 2025/2026</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
     
     <style>
-        body { background-color: #f0f2f5; font-family: 'Segoe UI', sans-serif; }
+        body { 
+            background-color: #f8f9fa; 
+            font-family: 'Montserrat', sans-serif; 
+            color: #2c3e50;
+        }
         
+        /* HEADER REVISITÉ */
         .header-bg {
             background: linear-gradient(135deg, #001f3f 0%, #003366 100%);
             color: white;
-            padding: 50px 0 80px 0;
-            margin-bottom: -40px;
+            padding: 60px 0 90px 0;
+            margin-bottom: -50px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
         }
 
-        /* --- AJOUT DU STYLE POUR LE LOGO (Code Collègue) --- */
-        .dauphine-logo {
-            height: 200px;
-            width: auto;
-            margin-bottom: 14px;
-            filter: drop-shadow(0 10px 20px rgba(0,0,0,0.25));
-            opacity: 0.98;
+        /* Le conteneur du logo devient une "carte" blanche arrondie */
+        .logo-box {
+            background-color: white;
+            display: inline-block;
+            padding: 15px 30px;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            margin-bottom: 25px;
         }
-        @media (max-width: 576px) {
-            .dauphine-logo { height: 44px; }
+
+        .dauphine-logo {
+            height: 100px; /* Taille ajustée pour rentrer dans la boite */
+            width: auto;
+            display: block;
+        }
+
+        h1 {
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
         }
 
         .search-container {
@@ -40,86 +59,119 @@
         .search-input {
             border-radius: 50px;
             border: none;
-            padding: 18px 30px;
+            padding: 20px 30px;
             font-size: 1.1rem;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
             width: 100%;
+            transition: all 0.3s ease;
         }
-        .search-input:focus { outline: none; box-shadow: 0 10px 30px rgba(13, 110, 253, 0.25); }
+        .search-input:focus { 
+            outline: none; 
+            box-shadow: 0 15px 35px rgba(13, 110, 253, 0.4); 
+            transform: scale(1.01);
+        }
 
+        /* CARTES DE COURS */
         .course-card {
             border: none;
-            border-radius: 12px;
+            border-radius: 16px;
             background: white;
-            transition: all 0.3s ease;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
             height: 100%;
-            border-left: 5px solid transparent;
+            border-left: 6px solid transparent;
             cursor: pointer;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            box-shadow: 0 2px 15px rgba(0,0,0,0.03);
+            overflow: hidden;
         }
         
         .course-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.12);
         }
 
-        /* --- COULEURS (Confirmées) --- */
-        
-        /* Tronc Commun = Bleu */
+        /* --- COULEURS --- */
         .border-primary { border-left-color: #0d6efd !important; }
         .badge-primary { background-color: #0d6efd !important; color: white; }
-
-        /* Voie Finance = Violet */
+        
         .border-custom-purple { border-left-color: #8e44ad !important; }
         .badge-custom-purple { background-color: #8e44ad !important; color: white; }
-
-        /* Voie Data = Jaune */
+        
         .border-warning { border-left-color: #f1c40f !important; }
-        .badge-warning { background-color: #f1c40f !important; color: black; }
+        .badge-warning { background-color: #f1c40f !important; color: #212529; }
 
+        /* BADGES KEYWORDS */
         .index-badge {
-            font-size: 0.7rem;
-            background-color: #eef2f7;
+            font-size: 0.75rem;
+            background-color: #edf2f7;
             color: #4a5568;
-            padding: 4px 8px;
-            border-radius: 6px;
-            margin: 2px;
+            padding: 5px 10px;
+            border-radius: 8px;
+            margin: 3px;
             display: inline-block;
+            font-weight: 500;
         }
 
-        .modal-header { border-bottom: none; background: #f8f9fa; }
-        .modal-body { padding: 30px; }
-        .modal-title { font-weight: 800; color: #2d3748; }
+        /* MODALE */
+        .modal-content {
+            border-radius: 20px;
+            border: none;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.3);
+        }
+        .modal-header { border-bottom: 1px solid #eee; background: #fff; border-radius: 20px 20px 0 0; padding: 25px; }
+        .modal-body { padding: 35px; }
+        .modal-title { font-weight: 800; color: #1a202c; }
 
+        /* SEPARATEURS SEMESTRES */
         .semester-sep {
-            border-radius: 14px;
-            padding: 14px 18px;
-            margin: 30px 0 20px 0;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-            border: 1px solid rgba(0,0,0,0.05);
+            border-radius: 16px;
+            padding: 20px 25px;
+            margin: 40px 0 25px 0;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
             background: white;
+            border-left: 6px solid #2c3e50;
         }
-        .semester-sep h2 { margin: 0; font-weight: 800; color: #1a202c; }
-        .semester-sep small { display: block; margin-top: 4px; opacity: 0.85; }
+        .semester-sep h2 { margin: 0; font-weight: 800; color: #2c3e50; font-size: 1.8rem; }
+        .semester-sep small { display: block; margin-top: 5px; color: #718096; font-weight: 500; text-transform: uppercase; letter-spacing: 1px; font-size: 0.85rem; }
+        
+        .cat-badge-legend {
+            font-size: 0.85rem;
+            padding: 8px 15px;
+            border-radius: 30px;
+            display: inline-flex;
+            align-items: center;
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        
+        .dot {
+            height: 10px; width: 10px; border-radius: 50%; display: inline-block; margin-right: 8px;
+        }
     </style>
 </head>
 <body>
 
     <div class="header-bg text-center">
         <div class="container">
-            <img src="logo dauphine.png" alt="Université Paris Dauphine" class="dauphine-logo">
-            
-            <h1 class="display-5 fw-bold mb-2">Ingénierie Statistique et Financière - Apprentissage - Master 2</h1>
-            <p class="lead opacity-75">Programme 2025/2026</p>
-            
-            <div class="d-flex justify-content-center gap-3 mt-3 text-white small">
-                <div><span class="badge badge-primary"> </span> Tronc Commun</div>
-                <div><span class="badge badge-custom-purple"> </span> Voie Finance</div>
-                <div><span class="badge badge-warning"> </span> Voie Data</div>
+            <div class="logo-box">
+                <img src="logo dauphine.png" alt="Université Paris Dauphine" class="dauphine-logo">
             </div>
 
-            <div class="search-container mt-4">
-                <input type="text" id="searchInput" class="search-input" placeholder="💡 Tapez un concept (ex: BERT, ACPR, VaR, Python...)" onkeyup="filterCourses()">
+            <h1 class="display-5 mb-2">Master 2 ISF - Apprentissage</h1>
+            <p class="lead opacity-90 fw-light mb-4">Ingénierie Statistique et Financière • Programme 2025/2026</p>
+            
+            <div class="d-flex justify-content-center flex-wrap gap-3 mt-4 text-white">
+                <div class="cat-badge-legend"><span class="dot bg-primary"></span> Tronc Commun</div>
+                <div class="cat-badge-legend"><span class="dot" style="background-color: #8e44ad;"></span> Voie Finance</div>
+                <div class="cat-badge-legend"><span class="dot" style="background-color: #f1c40f;"></span> Voie Data</div>
+            </div>
+
+            <div class="search-container mt-5">
+                <input type="text" id="searchInput" class="search-input" placeholder="💡 Recherchez un cours, un prof ou un concept (ex: Python, VaR...)" onkeyup="filterCourses()">
+                
+                <div id="searchFeedback" class="text-white mt-3 fw-bold" style="display:none; text-shadow: 0 2px 4px rgba(0,0,0,0.3); background: rgba(0,0,0,0.2); display: inline-block; padding: 5px 15px; border-radius: 20px;">
+                    Résultats de votre recherche :
+                </div>
             </div>
         </div>
     </div>
@@ -127,349 +179,351 @@
     <div class="container mt-5 mb-5 pt-4">
         <div class="row g-4" id="coursesList">
 
-            <div class="col-12"><div class="semester-sep"><h2>Semestre 3</h2><small class="text-muted">Fondamentaux</small></div></div>
+            <div class="col-12"><div class="semester-sep"><h2>Semestre 3</h2><small>Fondamentaux & Tronc Commun</small></div></div>
 
             <div class="col-md-6 col-lg-4 course-item" data-index="processus stochastiques emmanuel lepinette algèbre, contrôle stochastique, eds, edsr, équation de bellman, intégrale stochastique, martingales, processus stochastiques, théorie de la mesure, volatilité stochastique s3">
                 <div class="course-card border-primary" onclick="openModal(0)">
-                    <div class="p-4">
-                        <div class="d-flex justify-content-between align-items-start mb-2">
-                            <span class="badge badge-primary rounded-pill">Tronc Commun</span>
-                            <small class="text-muted"><i class="far fa-clock"></i> 30h</small>
+                    <div class="p-4 h-100 d-flex flex-column">
+                        <div class="d-flex justify-content-between align-items-start mb-3">
+                            <span class="badge badge-primary rounded-pill px-3 py-2">Tronc Commun</span>
+                            <small class="text-muted fw-bold"><i class="far fa-clock"></i> 30h</small>
                         </div>
-                        <h5 class="fw-bold text-dark mb-1">Processus Stochastiques</h5>
-                        <p class="text-secondary small mb-3"><i class="fas fa-user-tie me-1"></i> Emmanuel Lepinette</p>
-                        <div class="mt-3"><span class="index-badge">Algèbre</span><span class="index-badge">Contrôle stochastique</span><span class="index-badge">EDS</span><span class="index-badge">EDSR</span><span class="index-badge">...</span></div>
+                        <h5 class="fw-bold text-dark mb-2">Processus Stochastiques</h5>
+                        <p class="text-secondary small mb-3 flex-grow-1"><i class="fas fa-user-tie me-2 text-primary opacity-50"></i>Emmanuel Lepinette</p>
+                        <div class="mt-auto pt-2 border-top"><span class="index-badge">Algèbre</span><span class="index-badge">Contrôle stochastique</span><span class="index-badge">EDS</span><span class="index-badge">EDSR</span><span class="index-badge">...</span></div>
                     </div>
                 </div>
             </div>
     
             <div class="col-md-6 col-lg-4 course-item" data-index="méthodes actuarielles marc domange actuariat, calibration, copules, engagements techniques, eql, méthodes actuarielles, régression, multivariés, paramétriques, historique, risques, hors modèles, tarification, recouvrement, prospective s3">
                 <div class="course-card border-primary" onclick="openModal(1)">
-                    <div class="p-4">
-                        <div class="d-flex justify-content-between align-items-start mb-2">
-                            <span class="badge badge-primary rounded-pill">Tronc Commun</span>
-                            <small class="text-muted"><i class="far fa-clock"></i> 21h</small>
+                    <div class="p-4 h-100 d-flex flex-column">
+                        <div class="d-flex justify-content-between align-items-start mb-3">
+                            <span class="badge badge-primary rounded-pill px-3 py-2">Tronc Commun</span>
+                            <small class="text-muted fw-bold"><i class="far fa-clock"></i> 21h</small>
                         </div>
-                        <h5 class="fw-bold text-dark mb-1">Méthodes Actuarielles</h5>
-                        <p class="text-secondary small mb-3"><i class="fas fa-user-tie me-1"></i> Marc Domange</p>
-                        <div class="mt-3"><span class="index-badge">Actuariat</span><span class="index-badge">Calibration</span><span class="index-badge">Copules</span><span class="index-badge">Engagements techniques</span><span class="index-badge">...</span></div>
+                        <h5 class="fw-bold text-dark mb-2">Méthodes Actuarielles</h5>
+                        <p class="text-secondary small mb-3 flex-grow-1"><i class="fas fa-user-tie me-2 text-primary opacity-50"></i>Marc Domange</p>
+                        <div class="mt-auto pt-2 border-top"><span class="index-badge">Actuariat</span><span class="index-badge">Calibration</span><span class="index-badge">Copules</span><span class="index-badge">Engagements techniques</span><span class="index-badge">...</span></div>
                     </div>
                 </div>
             </div>
     
             <div class="col-md-6 col-lg-4 course-item" data-index="assurance vie et non-vie michel germain allianz, assurance de portefeuille, assurance non-vie, assurance vie, comptabilité, garanties, hannover re, produits taux, rachats actions, réassurance, réglementation s3">
                 <div class="course-card border-primary" onclick="openModal(2)">
-                    <div class="p-4">
-                        <div class="d-flex justify-content-between align-items-start mb-2">
-                            <span class="badge badge-primary rounded-pill">Tronc Commun</span>
-                            <small class="text-muted"><i class="far fa-clock"></i> 21h</small>
+                    <div class="p-4 h-100 d-flex flex-column">
+                        <div class="d-flex justify-content-between align-items-start mb-3">
+                            <span class="badge badge-primary rounded-pill px-3 py-2">Tronc Commun</span>
+                            <small class="text-muted fw-bold"><i class="far fa-clock"></i> 21h</small>
                         </div>
-                        <h5 class="fw-bold text-dark mb-1">Assurance Vie et Non-Vie</h5>
-                        <p class="text-secondary small mb-3"><i class="fas fa-user-tie me-1"></i> Michel Germain</p>
-                        <div class="mt-3"><span class="index-badge">Allianz</span><span class="index-badge">Assurance de portefeuille</span><span class="index-badge">Assurance non-vie</span><span class="index-badge">Assurance vie</span><span class="index-badge">...</span></div>
+                        <h5 class="fw-bold text-dark mb-2">Assurance Vie et Non-Vie</h5>
+                        <p class="text-secondary small mb-3 flex-grow-1"><i class="fas fa-user-tie me-2 text-primary opacity-50"></i>Michel Germain</p>
+                        <div class="mt-auto pt-2 border-top"><span class="index-badge">Allianz</span><span class="index-badge">Assurance de portefeuille</span><span class="index-badge">Assurance non-vie</span><span class="index-badge">Assurance vie</span><span class="index-badge">...</span></div>
                     </div>
                 </div>
             </div>
     
             <div class="col-md-6 col-lg-4 course-item" data-index="solvabilité 2 l. a. de lamaze acpr, banque de france, appétence, risque, bilan, cocos, dette hybride, dettes, expected shortfall, orsa, qrt, solvabilité ii, tier 1, 2, 3 s3">
                 <div class="course-card border-primary" onclick="openModal(3)">
-                    <div class="p-4">
-                        <div class="d-flex justify-content-between align-items-start mb-2">
-                            <span class="badge badge-primary rounded-pill">Tronc Commun</span>
-                            <small class="text-muted"><i class="far fa-clock"></i> 18h</small>
+                    <div class="p-4 h-100 d-flex flex-column">
+                        <div class="d-flex justify-content-between align-items-start mb-3">
+                            <span class="badge badge-primary rounded-pill px-3 py-2">Tronc Commun</span>
+                            <small class="text-muted fw-bold"><i class="far fa-clock"></i> 18h</small>
                         </div>
-                        <h5 class="fw-bold text-dark mb-1">Solvabilité 2</h5>
-                        <p class="text-secondary small mb-3"><i class="fas fa-user-tie me-1"></i> L. A. De Lamaze</p>
-                        <div class="mt-3"><span class="index-badge">ACPR</span><span class="index-badge">Banque de France</span><span class="index-badge">Appétence</span><span class="index-badge">Risque</span><span class="index-badge">...</span></div>
+                        <h5 class="fw-bold text-dark mb-2">Solvabilité 2</h5>
+                        <p class="text-secondary small mb-3 flex-grow-1"><i class="fas fa-user-tie me-2 text-primary opacity-50"></i>L. A. De Lamaze</p>
+                        <div class="mt-auto pt-2 border-top"><span class="index-badge">ACPR</span><span class="index-badge">Banque de France</span><span class="index-badge">Appétence</span><span class="index-badge">Risque</span><span class="index-badge">...</span></div>
                     </div>
                 </div>
             </div>
     
             <div class="col-md-6 col-lg-4 course-item" data-index="gestion des risques (var) denis bertin analyse financière, beta, bloomberg, convexité, corrélation, dépendance, duration, expected shortfall, gestion risques, grecques, kpi, marchés, obligataires, natixis, prime risque, défaut, liquidité, taux, riskmetrics, var, xva s3">
                 <div class="course-card border-primary" onclick="openModal(4)">
-                    <div class="p-4">
-                        <div class="d-flex justify-content-between align-items-start mb-2">
-                            <span class="badge badge-primary rounded-pill">Tronc Commun</span>
-                            <small class="text-muted"><i class="far fa-clock"></i> 21h</small>
+                    <div class="p-4 h-100 d-flex flex-column">
+                        <div class="d-flex justify-content-between align-items-start mb-3">
+                            <span class="badge badge-primary rounded-pill px-3 py-2">Tronc Commun</span>
+                            <small class="text-muted fw-bold"><i class="far fa-clock"></i> 21h</small>
                         </div>
-                        <h5 class="fw-bold text-dark mb-1">Gestion des Risques (VaR)</h5>
-                        <p class="text-secondary small mb-3"><i class="fas fa-user-tie me-1"></i> Denis Bertin</p>
-                        <div class="mt-3"><span class="index-badge">Analyse financière</span><span class="index-badge">Beta</span><span class="index-badge">Bloomberg</span><span class="index-badge">Convexité</span><span class="index-badge">...</span></div>
+                        <h5 class="fw-bold text-dark mb-2">Gestion des Risques (VaR)</h5>
+                        <p class="text-secondary small mb-3 flex-grow-1"><i class="fas fa-user-tie me-2 text-primary opacity-50"></i>Denis Bertin</p>
+                        <div class="mt-auto pt-2 border-top"><span class="index-badge">Analyse financière</span><span class="index-badge">Beta</span><span class="index-badge">Bloomberg</span><span class="index-badge">Convexité</span><span class="index-badge">...</span></div>
                     </div>
                 </div>
             </div>
     
             <div class="col-md-6 col-lg-4 course-item" data-index="introduction au machine learning pierre brugière acp, aic, optimisation, discriminante, supervisé, non supervisé, arbres décision, bayésien, bic, bootstrap, classification, clustering, r2, data science, vapnik-chervonenkis, forêts aléatoires, gauss-markov, kernels, lasso, machine learning, mco, over-fitting, pénalisation, régression, ridge, scikit-learn, sgd, svm, validation croisée s3">
                 <div class="course-card border-primary" onclick="openModal(5)">
-                    <div class="p-4">
-                        <div class="d-flex justify-content-between align-items-start mb-2">
-                            <span class="badge badge-primary rounded-pill">Tronc Commun</span>
-                            <small class="text-muted"><i class="far fa-clock"></i> 15h</small>
+                    <div class="p-4 h-100 d-flex flex-column">
+                        <div class="d-flex justify-content-between align-items-start mb-3">
+                            <span class="badge badge-primary rounded-pill px-3 py-2">Tronc Commun</span>
+                            <small class="text-muted fw-bold"><i class="far fa-clock"></i> 15h</small>
                         </div>
-                        <h5 class="fw-bold text-dark mb-1">Introduction au Machine Learning</h5>
-                        <p class="text-secondary small mb-3"><i class="fas fa-user-tie me-1"></i> Pierre Brugière</p>
-                        <div class="mt-3"><span class="index-badge">ACP</span><span class="index-badge">AIC</span><span class="index-badge">Optimisation</span><span class="index-badge">Discriminante</span><span class="index-badge">...</span></div>
+                        <h5 class="fw-bold text-dark mb-2">Introduction au Machine Learning</h5>
+                        <p class="text-secondary small mb-3 flex-grow-1"><i class="fas fa-user-tie me-2 text-primary opacity-50"></i>Pierre Brugière</p>
+                        <div class="mt-auto pt-2 border-top"><span class="index-badge">ACP</span><span class="index-badge">AIC</span><span class="index-badge">Optimisation</span><span class="index-badge">Discriminante</span><span class="index-badge">...</span></div>
                     </div>
                 </div>
             </div>
     
             <div class="col-md-6 col-lg-4 course-item" data-index="deep learning gabriel turinici actor-critic, alignement, sentiments, ann, attention, back-propagation, bag of words, bert, bleu, cnn, deep learning, dqn, embeddings, fine-tuning, gan, glove, gpt, gym, hugging face, keras, llm, lstm, mdp, nlp, pytorch, q-learning, reinforcement learning, rnn, rouge, sarsa, stable diffusion, tensorflow, transformer, word2vec s3">
                 <div class="course-card border-primary" onclick="openModal(6)">
-                    <div class="p-4">
-                        <div class="d-flex justify-content-between align-items-start mb-2">
-                            <span class="badge badge-primary rounded-pill">Tronc Commun</span>
-                            <small class="text-muted"><i class="far fa-clock"></i> 18h</small>
+                    <div class="p-4 h-100 d-flex flex-column">
+                        <div class="d-flex justify-content-between align-items-start mb-3">
+                            <span class="badge badge-primary rounded-pill px-3 py-2">Tronc Commun</span>
+                            <small class="text-muted fw-bold"><i class="far fa-clock"></i> 18h</small>
                         </div>
-                        <h5 class="fw-bold text-dark mb-1">Deep Learning</h5>
-                        <p class="text-secondary small mb-3"><i class="fas fa-user-tie me-1"></i> Gabriel Turinici</p>
-                        <div class="mt-3"><span class="index-badge">Actor-Critic</span><span class="index-badge">Alignement</span><span class="index-badge">Sentiments</span><span class="index-badge">ANN</span><span class="index-badge">...</span></div>
+                        <h5 class="fw-bold text-dark mb-2">Deep Learning</h5>
+                        <p class="text-secondary small mb-3 flex-grow-1"><i class="fas fa-user-tie me-2 text-primary opacity-50"></i>Gabriel Turinici</p>
+                        <div class="mt-auto pt-2 border-top"><span class="index-badge">Actor-Critic</span><span class="index-badge">Alignement</span><span class="index-badge">Sentiments</span><span class="index-badge">ANN</span><span class="index-badge">...</span></div>
                     </div>
                 </div>
             </div>
     
             <div class="col-md-6 col-lg-4 course-item" data-index="sas et python allo & lassence analyse données, business analytics, data science, eda, implémentation, python, r, regex, sas, scrapping, tableaux de bord, visualisation s3">
                 <div class="course-card border-primary" onclick="openModal(7)">
-                    <div class="p-4">
-                        <div class="d-flex justify-content-between align-items-start mb-2">
-                            <span class="badge badge-primary rounded-pill">Tronc Commun</span>
-                            <small class="text-muted"><i class="far fa-clock"></i> 24h</small>
+                    <div class="p-4 h-100 d-flex flex-column">
+                        <div class="d-flex justify-content-between align-items-start mb-3">
+                            <span class="badge badge-primary rounded-pill px-3 py-2">Tronc Commun</span>
+                            <small class="text-muted fw-bold"><i class="far fa-clock"></i> 24h</small>
                         </div>
-                        <h5 class="fw-bold text-dark mb-1">SAS et Python</h5>
-                        <p class="text-secondary small mb-3"><i class="fas fa-user-tie me-1"></i> Allo & Lassence</p>
-                        <div class="mt-3"><span class="index-badge">Analyse données</span><span class="index-badge">Business analytics</span><span class="index-badge">Data Science</span><span class="index-badge">EDA</span><span class="index-badge">...</span></div>
+                        <h5 class="fw-bold text-dark mb-2">SAS et Python</h5>
+                        <p class="text-secondary small mb-3 flex-grow-1"><i class="fas fa-user-tie me-2 text-primary opacity-50"></i>Allo & Lassence</p>
+                        <div class="mt-auto pt-2 border-top"><span class="index-badge">Analyse données</span><span class="index-badge">Business analytics</span><span class="index-badge">Data Science</span><span class="index-badge">EDA</span><span class="index-badge">...</span></div>
                     </div>
                 </div>
             </div>
     
             <div class="col-md-6 col-lg-4 course-item" data-index="crypto finance & defi remy oczan blockchain, crypto, defi, innovation, smart contracts, tokenization, tokens s3">
                 <div class="course-card border-primary" onclick="openModal(8)">
-                    <div class="p-4">
-                        <div class="d-flex justify-content-between align-items-start mb-2">
-                            <span class="badge badge-primary rounded-pill">Tronc Commun</span>
-                            <small class="text-muted"><i class="far fa-clock"></i> 15h</small>
+                    <div class="p-4 h-100 d-flex flex-column">
+                        <div class="d-flex justify-content-between align-items-start mb-3">
+                            <span class="badge badge-primary rounded-pill px-3 py-2">Tronc Commun</span>
+                            <small class="text-muted fw-bold"><i class="far fa-clock"></i> 15h</small>
                         </div>
-                        <h5 class="fw-bold text-dark mb-1">Crypto Finance & DeFi</h5>
-                        <p class="text-secondary small mb-3"><i class="fas fa-user-tie me-1"></i> Remy Oczan</p>
-                        <div class="mt-3"><span class="index-badge">Blockchain</span><span class="index-badge">Crypto</span><span class="index-badge">DeFi</span><span class="index-badge">Innovation</span><span class="index-badge">...</span></div>
+                        <h5 class="fw-bold text-dark mb-2">Crypto Finance & DeFi</h5>
+                        <p class="text-secondary small mb-3 flex-grow-1"><i class="fas fa-user-tie me-2 text-primary opacity-50"></i>Remy Oczan</p>
+                        <div class="mt-auto pt-2 border-top"><span class="index-badge">Blockchain</span><span class="index-badge">Crypto</span><span class="index-badge">DeFi</span><span class="index-badge">Innovation</span><span class="index-badge">...</span></div>
                     </div>
                 </div>
             </div>
     
             <div class="col-md-6 col-lg-4 course-item" data-index="anglais des affaires catherine piola anglais, soft skills, management, cv, communication, conduite de projet, culture ia, éthique, forums, recherche emploi, soutenance s3">
                 <div class="course-card border-primary" onclick="openModal(10)">
-                    <div class="p-4">
-                        <div class="d-flex justify-content-between align-items-start mb-2">
-                            <span class="badge badge-primary rounded-pill">Tronc Commun</span>
-                            <small class="text-muted"><i class="far fa-clock"></i> 18h</small>
+                    <div class="p-4 h-100 d-flex flex-column">
+                        <div class="d-flex justify-content-between align-items-start mb-3">
+                            <span class="badge badge-primary rounded-pill px-3 py-2">Tronc Commun</span>
+                            <small class="text-muted fw-bold"><i class="far fa-clock"></i> 18h</small>
                         </div>
-                        <h5 class="fw-bold text-dark mb-1">Anglais des affaires</h5>
-                        <p class="text-secondary small mb-3"><i class="fas fa-user-tie me-1"></i> Catherine Piola</p>
-                        <div class="mt-3"><span class="index-badge">Anglais</span><span class="index-badge">Soft skills</span><span class="index-badge">Management</span><span class="index-badge">CV</span><span class="index-badge">...</span></div>
+                        <h5 class="fw-bold text-dark mb-2">Anglais des affaires</h5>
+                        <p class="text-secondary small mb-3 flex-grow-1"><i class="fas fa-user-tie me-2 text-primary opacity-50"></i>Catherine Piola</p>
+                        <div class="mt-auto pt-2 border-top"><span class="index-badge">Anglais</span><span class="index-badge">Soft skills</span><span class="index-badge">Management</span><span class="index-badge">CV</span><span class="index-badge">...</span></div>
                     </div>
                 </div>
             </div>
     
             <div class="col-md-6 col-lg-4 course-item" data-index="introduction à l'apprentissage supervisé patrice bertrand analyse factorielle, discriminante, classification bayésienne, arbres de décision, forêts aléatoires, r s3">
                 <div class="course-card border-primary" onclick="openModal(104)">
-                    <div class="p-4">
-                        <div class="d-flex justify-content-between align-items-start mb-2">
-                            <span class="badge badge-primary rounded-pill">Tronc Commun</span>
-                            <small class="text-muted"><i class="far fa-clock"></i> 21h</small>
+                    <div class="p-4 h-100 d-flex flex-column">
+                        <div class="d-flex justify-content-between align-items-start mb-3">
+                            <span class="badge badge-primary rounded-pill px-3 py-2">Tronc Commun</span>
+                            <small class="text-muted fw-bold"><i class="far fa-clock"></i> 21h</small>
                         </div>
-                        <h5 class="fw-bold text-dark mb-1">Introduction à l'apprentissage supervisé</h5>
-                        <p class="text-secondary small mb-3"><i class="fas fa-user-tie me-1"></i> Patrice Bertrand</p>
-                        <div class="mt-3"><span class="index-badge">Analyse factorielle</span><span class="index-badge">Discriminante</span><span class="index-badge">Classification bayésienne</span><span class="index-badge">Arbres de décision</span><span class="index-badge">...</span></div>
+                        <h5 class="fw-bold text-dark mb-2">Introduction à l'apprentissage supervisé</h5>
+                        <p class="text-secondary small mb-3 flex-grow-1"><i class="fas fa-user-tie me-2 text-primary opacity-50"></i>Patrice Bertrand</p>
+                        <div class="mt-auto pt-2 border-top"><span class="index-badge">Analyse factorielle</span><span class="index-badge">Discriminante</span><span class="index-badge">Classification bayésienne</span><span class="index-badge">Arbres de décision</span><span class="index-badge">...</span></div>
                     </div>
                 </div>
             </div>
     
             <div class="col-md-6 col-lg-4 course-item" data-index="méthodes pour les modèles de régression patrice bertrand régression linéaire, mco, gauss-markov, ridge, lasso, validation croisée, aic, bic s3">
                 <div class="course-card border-primary" onclick="openModal(108)">
-                    <div class="p-4">
-                        <div class="d-flex justify-content-between align-items-start mb-2">
-                            <span class="badge badge-primary rounded-pill">Tronc Commun</span>
-                            <small class="text-muted"><i class="far fa-clock"></i> 21h</small>
+                    <div class="p-4 h-100 d-flex flex-column">
+                        <div class="d-flex justify-content-between align-items-start mb-3">
+                            <span class="badge badge-primary rounded-pill px-3 py-2">Tronc Commun</span>
+                            <small class="text-muted fw-bold"><i class="far fa-clock"></i> 21h</small>
                         </div>
-                        <h5 class="fw-bold text-dark mb-1">Méthodes pour les modèles de régression</h5>
-                        <p class="text-secondary small mb-3"><i class="fas fa-user-tie me-1"></i> Patrice Bertrand</p>
-                        <div class="mt-3"><span class="index-badge">Régression linéaire</span><span class="index-badge">MCO</span><span class="index-badge">Gauss-Markov</span><span class="index-badge">Ridge</span><span class="index-badge">...</span></div>
+                        <h5 class="fw-bold text-dark mb-2">Méthodes pour les modèles de régression</h5>
+                        <p class="text-secondary small mb-3 flex-grow-1"><i class="fas fa-user-tie me-2 text-primary opacity-50"></i>Patrice Bertrand</p>
+                        <div class="mt-auto pt-2 border-top"><span class="index-badge">Régression linéaire</span><span class="index-badge">MCO</span><span class="index-badge">Gauss-Markov</span><span class="index-badge">Ridge</span><span class="index-badge">...</span></div>
                     </div>
                 </div>
             </div>
     
             <div class="col-md-6 col-lg-4 course-item" data-index="modélisation risque crédit emmanuel lepinette crédit, merton, intensité, défaut, modélisation s3">
                 <div class="course-card border-custom-purple" onclick="openModal(113)">
-                    <div class="p-4">
-                        <div class="d-flex justify-content-between align-items-start mb-2">
-                            <span class="badge badge-custom-purple rounded-pill">Voie Finance</span>
-                            <small class="text-muted"><i class="far fa-clock"></i> 21h</small>
+                    <div class="p-4 h-100 d-flex flex-column">
+                        <div class="d-flex justify-content-between align-items-start mb-3">
+                            <span class="badge badge-custom-purple rounded-pill px-3 py-2">Voie Finance</span>
+                            <small class="text-muted fw-bold"><i class="far fa-clock"></i> 21h</small>
                         </div>
-                        <h5 class="fw-bold text-dark mb-1">Modélisation Risque Crédit</h5>
-                        <p class="text-secondary small mb-3"><i class="fas fa-user-tie me-1"></i> Emmanuel Lepinette</p>
-                        <div class="mt-3"><span class="index-badge">Crédit</span><span class="index-badge">Merton</span><span class="index-badge">Intensité</span><span class="index-badge">Défaut</span><span class="index-badge">...</span></div>
+                        <h5 class="fw-bold text-dark mb-2">Modélisation Risque Crédit</h5>
+                        <p class="text-secondary small mb-3 flex-grow-1"><i class="fas fa-user-tie me-2 text-primary opacity-50"></i>Emmanuel Lepinette</p>
+                        <div class="mt-auto pt-2 border-top"><span class="index-badge">Crédit</span><span class="index-badge">Merton</span><span class="index-badge">Intensité</span><span class="index-badge">Défaut</span><span class="index-badge">...</span></div>
                     </div>
                 </div>
             </div>
     
             <div class="col-md-6 col-lg-4 course-item" data-index="stats & produits dérivés gabriel turinici dérivés, portefeuille, delta, volatilité, hedging s3">
                 <div class="course-card border-custom-purple" onclick="openModal(114)">
-                    <div class="p-4">
-                        <div class="d-flex justify-content-between align-items-start mb-2">
-                            <span class="badge badge-custom-purple rounded-pill">Voie Finance</span>
-                            <small class="text-muted"><i class="far fa-clock"></i> 21h</small>
+                    <div class="p-4 h-100 d-flex flex-column">
+                        <div class="d-flex justify-content-between align-items-start mb-3">
+                            <span class="badge badge-custom-purple rounded-pill px-3 py-2">Voie Finance</span>
+                            <small class="text-muted fw-bold"><i class="far fa-clock"></i> 21h</small>
                         </div>
-                        <h5 class="fw-bold text-dark mb-1">Stats & Produits Dérivés</h5>
-                        <p class="text-secondary small mb-3"><i class="fas fa-user-tie me-1"></i> Gabriel Turinici</p>
-                        <div class="mt-3"><span class="index-badge">Dérivés</span><span class="index-badge">Portefeuille</span><span class="index-badge">Delta</span><span class="index-badge">Volatilité</span><span class="index-badge">...</span></div>
+                        <h5 class="fw-bold text-dark mb-2">Stats & Produits Dérivés</h5>
+                        <p class="text-secondary small mb-3 flex-grow-1"><i class="fas fa-user-tie me-2 text-primary opacity-50"></i>Gabriel Turinici</p>
+                        <div class="mt-auto pt-2 border-top"><span class="index-badge">Dérivés</span><span class="index-badge">Portefeuille</span><span class="index-badge">Delta</span><span class="index-badge">Volatilité</span><span class="index-badge">...</span></div>
                     </div>
                 </div>
             </div>
     
-            <div class="col-12"><div class="semester-sep"><h2>Semestre 4</h2><small class="text-muted">Approfondissement & Projet</small></div></div>
+            <div class="col-12"><div class="semester-sep"><h2>Semestre 4</h2><small>Spécialisations & Projets</small></div></div>
 
             <div class="col-md-6 col-lg-4 course-item" data-index="pratique des options bertrand faucher amundi, arbitrage, barbell, black-scholes, bloomberg, bnp paribas, bullet, butterfly, corporate finance, courbe des taux, dcm, delta hedging, dérivés de crédit, dérivés de taux, dividendes, dualité, ecm, etf short, futures, gestion active, gestion passive, hsbc, lgm, m&a, market making, bgm, splines, crédit, stochastiques, moindres carrés, obligations convertibles, portefeuille, prédiction, pricing, risque neutre, roll-down, segmentation, stop-loss, swaps, tracking error, volatilité, valuation s4">
                 <div class="course-card border-primary" onclick="openModal(9)">
-                    <div class="p-4">
-                        <div class="d-flex justify-content-between align-items-start mb-2">
-                            <span class="badge badge-primary rounded-pill">Tronc Commun</span>
-                            <small class="text-muted"><i class="far fa-clock"></i> 18h</small>
+                    <div class="p-4 h-100 d-flex flex-column">
+                        <div class="d-flex justify-content-between align-items-start mb-3">
+                            <span class="badge badge-primary rounded-pill px-3 py-2">Tronc Commun</span>
+                            <small class="text-muted fw-bold"><i class="far fa-clock"></i> 18h</small>
                         </div>
-                        <h5 class="fw-bold text-dark mb-1">Pratique des options</h5>
-                        <p class="text-secondary small mb-3"><i class="fas fa-user-tie me-1"></i> Bertrand Faucher</p>
-                        <div class="mt-3"><span class="index-badge">Amundi</span><span class="index-badge">Arbitrage</span><span class="index-badge">Barbell</span><span class="index-badge">Black-Scholes</span><span class="index-badge">...</span></div>
+                        <h5 class="fw-bold text-dark mb-2">Pratique des options</h5>
+                        <p class="text-secondary small mb-3 flex-grow-1"><i class="fas fa-user-tie me-2 text-primary opacity-50"></i>Bertrand Faucher</p>
+                        <div class="mt-auto pt-2 border-top"><span class="index-badge">Amundi</span><span class="index-badge">Arbitrage</span><span class="index-badge">Barbell</span><span class="index-badge">Black-Scholes</span><span class="index-badge">...</span></div>
                     </div>
                 </div>
             </div>
     
             <div class="col-md-6 col-lg-4 course-item" data-index="culture financière & bloomberg p. brugière & d. bertin corporate finance, actions, dette, tier 1, 2, 3, obligations convertibles, cocos, dividendes, ecm, dcm, eql, m&a, bloomberg, bdp, bdh, spreadsheets s4">
                 <div class="course-card border-primary" onclick="openModal(11)">
-                    <div class="p-4">
-                        <div class="d-flex justify-content-between align-items-start mb-2">
-                            <span class="badge badge-primary rounded-pill">Tronc Commun</span>
-                            <small class="text-muted"><i class="far fa-clock"></i> 15h</small>
+                    <div class="p-4 h-100 d-flex flex-column">
+                        <div class="d-flex justify-content-between align-items-start mb-3">
+                            <span class="badge badge-primary rounded-pill px-3 py-2">Tronc Commun</span>
+                            <small class="text-muted fw-bold"><i class="far fa-clock"></i> 15h</small>
                         </div>
-                        <h5 class="fw-bold text-dark mb-1">Culture Financière & Bloomberg</h5>
-                        <p class="text-secondary small mb-3"><i class="fas fa-user-tie me-1"></i> P. Brugière & D. Bertin</p>
-                        <div class="mt-3"><span class="index-badge">Corporate finance</span><span class="index-badge">Actions</span><span class="index-badge">Dette</span><span class="index-badge">Tier 1</span><span class="index-badge">...</span></div>
+                        <h5 class="fw-bold text-dark mb-2">Culture Financière & Bloomberg</h5>
+                        <p class="text-secondary small mb-3 flex-grow-1"><i class="fas fa-user-tie me-2 text-primary opacity-50"></i>P. Brugière & D. Bertin</p>
+                        <div class="mt-auto pt-2 border-top"><span class="index-badge">Corporate finance</span><span class="index-badge">Actions</span><span class="index-badge">Dette</span><span class="index-badge">Tier 1</span><span class="index-badge">...</span></div>
                     </div>
                 </div>
             </div>
     
             <div class="col-md-6 col-lg-4 course-item" data-index="python et data science pierre fihey eda, préparation données, scrapping, clustering, réduction dimensions, classification, régression, deep learning, nlp, transformers, finance s4">
                 <div class="course-card border-primary" onclick="openModal(12)">
-                    <div class="p-4">
-                        <div class="d-flex justify-content-between align-items-start mb-2">
-                            <span class="badge badge-primary rounded-pill">Tronc Commun</span>
-                            <small class="text-muted"><i class="far fa-clock"></i> 18h</small>
+                    <div class="p-4 h-100 d-flex flex-column">
+                        <div class="d-flex justify-content-between align-items-start mb-3">
+                            <span class="badge badge-primary rounded-pill px-3 py-2">Tronc Commun</span>
+                            <small class="text-muted fw-bold"><i class="far fa-clock"></i> 18h</small>
                         </div>
-                        <h5 class="fw-bold text-dark mb-1">Python et Data Science</h5>
-                        <p class="text-secondary small mb-3"><i class="fas fa-user-tie me-1"></i> Pierre Fihey</p>
-                        <div class="mt-3"><span class="index-badge">EDA</span><span class="index-badge">Préparation données</span><span class="index-badge">Scrapping</span><span class="index-badge">Clustering</span><span class="index-badge">...</span></div>
+                        <h5 class="fw-bold text-dark mb-2">Python et Data Science</h5>
+                        <p class="text-secondary small mb-3 flex-grow-1"><i class="fas fa-user-tie me-2 text-primary opacity-50"></i>Pierre Fihey</p>
+                        <div class="mt-auto pt-2 border-top"><span class="index-badge">EDA</span><span class="index-badge">Préparation données</span><span class="index-badge">Scrapping</span><span class="index-badge">Clustering</span><span class="index-badge">...</span></div>
                     </div>
                 </div>
             </div>
     
             <div class="col-md-6 col-lg-4 course-item" data-index="conduite de projet et mémoire o. soussan & p. brugière management projet, communication, projet, réseaux sociaux, brochure, forums, mémoire, soutenance s4">
                 <div class="course-card border-primary" onclick="openModal(18)">
-                    <div class="p-4">
-                        <div class="d-flex justify-content-between align-items-start mb-2">
-                            <span class="badge badge-primary rounded-pill">Tronc Commun</span>
-                            <small class="text-muted"><i class="far fa-clock"></i> 18h</small>
+                    <div class="p-4 h-100 d-flex flex-column">
+                        <div class="d-flex justify-content-between align-items-start mb-3">
+                            <span class="badge badge-primary rounded-pill px-3 py-2">Tronc Commun</span>
+                            <small class="text-muted fw-bold"><i class="far fa-clock"></i> 18h</small>
                         </div>
-                        <h5 class="fw-bold text-dark mb-1">Conduite de projet et Mémoire</h5>
-                        <p class="text-secondary small mb-3"><i class="fas fa-user-tie me-1"></i> O. Soussan & P. Brugière</p>
-                        <div class="mt-3"><span class="index-badge">Management projet</span><span class="index-badge">Communication</span><span class="index-badge">Projet</span><span class="index-badge">Réseaux sociaux</span><span class="index-badge">...</span></div>
+                        <h5 class="fw-bold text-dark mb-2">Conduite de projet et Mémoire</h5>
+                        <p class="text-secondary small mb-3 flex-grow-1"><i class="fas fa-user-tie me-2 text-primary opacity-50"></i>O. Soussan & P. Brugière</p>
+                        <div class="mt-auto pt-2 border-top"><span class="index-badge">Management projet</span><span class="index-badge">Communication</span><span class="index-badge">Projet</span><span class="index-badge">Réseaux sociaux</span><span class="index-badge">...</span></div>
                     </div>
                 </div>
             </div>
     
             <div class="col-md-6 col-lg-4 course-item" data-index="implémentation modèles multivariés emmanuel lepinette copules, dépendance, risque multivarié, sur-réplication, numérique, python s4">
                 <div class="course-card border-custom-purple" onclick="openModal(13)">
-                    <div class="p-4">
-                        <div class="d-flex justify-content-between align-items-start mb-2">
-                            <span class="badge badge-custom-purple rounded-pill">Voie Finance</span>
-                            <small class="text-muted"><i class="far fa-clock"></i> 18h</small>
+                    <div class="p-4 h-100 d-flex flex-column">
+                        <div class="d-flex justify-content-between align-items-start mb-3">
+                            <span class="badge badge-custom-purple rounded-pill px-3 py-2">Voie Finance</span>
+                            <small class="text-muted fw-bold"><i class="far fa-clock"></i> 18h</small>
                         </div>
-                        <h5 class="fw-bold text-dark mb-1">Implémentation modèles multivariés</h5>
-                        <p class="text-secondary small mb-3"><i class="fas fa-user-tie me-1"></i> Emmanuel Lepinette</p>
-                        <div class="mt-3"><span class="index-badge">Copules</span><span class="index-badge">Dépendance</span><span class="index-badge">Risque multivarié</span><span class="index-badge">Sur-réplication</span><span class="index-badge">...</span></div>
+                        <h5 class="fw-bold text-dark mb-2">Implémentation modèles multivariés</h5>
+                        <p class="text-secondary small mb-3 flex-grow-1"><i class="fas fa-user-tie me-2 text-primary opacity-50"></i>Emmanuel Lepinette</p>
+                        <div class="mt-auto pt-2 border-top"><span class="index-badge">Copules</span><span class="index-badge">Dépendance</span><span class="index-badge">Risque multivarié</span><span class="index-badge">Sur-réplication</span><span class="index-badge">...</span></div>
                     </div>
                 </div>
             </div>
     
             <div class="col-md-6 col-lg-4 course-item" data-index="modélisation courbe de taux imen ben tahar taux, produits de taux, calcul stochastique, lgm, bgm, jamshidian, volatilité stochastique s4">
                 <div class="course-card border-custom-purple" onclick="openModal(14)">
-                    <div class="p-4">
-                        <div class="d-flex justify-content-between align-items-start mb-2">
-                            <span class="badge badge-custom-purple rounded-pill">Voie Finance</span>
-                            <small class="text-muted"><i class="far fa-clock"></i> 21h</small>
+                    <div class="p-4 h-100 d-flex flex-column">
+                        <div class="d-flex justify-content-between align-items-start mb-3">
+                            <span class="badge badge-custom-purple rounded-pill px-3 py-2">Voie Finance</span>
+                            <small class="text-muted fw-bold"><i class="far fa-clock"></i> 21h</small>
                         </div>
-                        <h5 class="fw-bold text-dark mb-1">Modélisation courbe de taux</h5>
-                        <p class="text-secondary small mb-3"><i class="fas fa-user-tie me-1"></i> Imen Ben Tahar</p>
-                        <div class="mt-3"><span class="index-badge">Taux</span><span class="index-badge">Produits de taux</span><span class="index-badge">Calcul stochastique</span><span class="index-badge">LGM</span><span class="index-badge">...</span></div>
+                        <h5 class="fw-bold text-dark mb-2">Modélisation courbe de taux</h5>
+                        <p class="text-secondary small mb-3 flex-grow-1"><i class="fas fa-user-tie me-2 text-primary opacity-50"></i>Imen Ben Tahar</p>
+                        <div class="mt-auto pt-2 border-top"><span class="index-badge">Taux</span><span class="index-badge">Produits de taux</span><span class="index-badge">Calcul stochastique</span><span class="index-badge">LGM</span><span class="index-badge">...</span></div>
                     </div>
                 </div>
             </div>
     
             <div class="col-md-6 col-lg-4 course-item" data-index="data science pour le business gharbi, zheng, fisz business, data, cas d'usage, entreprise s4">
                 <div class="course-card border-warning" onclick="openModal(207)">
-                    <div class="p-4">
-                        <div class="d-flex justify-content-between align-items-start mb-2">
-                            <span class="badge badge-warning rounded-pill">Voie Data</span>
-                            <small class="text-muted"><i class="far fa-clock"></i> 21h</small>
+                    <div class="p-4 h-100 d-flex flex-column">
+                        <div class="d-flex justify-content-between align-items-start mb-3">
+                            <span class="badge badge-warning rounded-pill px-3 py-2">Voie Data</span>
+                            <small class="text-muted fw-bold"><i class="far fa-clock"></i> 21h</small>
                         </div>
-                        <h5 class="fw-bold text-dark mb-1">Data Science pour le Business</h5>
-                        <p class="text-secondary small mb-3"><i class="fas fa-user-tie me-1"></i> Gharbi, Zheng, Fisz</p>
-                        <div class="mt-3"><span class="index-badge">Business</span><span class="index-badge">Data</span><span class="index-badge">Cas d'usage</span><span class="index-badge">Entreprise</span></div>
+                        <h5 class="fw-bold text-dark mb-2">Data Science pour le Business</h5>
+                        <p class="text-secondary small mb-3 flex-grow-1"><i class="fas fa-user-tie me-2 text-primary opacity-50"></i>Gharbi, Zheng, Fisz</p>
+                        <div class="mt-auto pt-2 border-top"><span class="index-badge">Business</span><span class="index-badge">Data</span><span class="index-badge">Cas d'usage</span><span class="index-badge">Entreprise</span></div>
                     </div>
                 </div>
             </div>
     
             <div class="col-md-6 col-lg-4 course-item" data-index="machine learning & nlp didier jeannel nlp, tf-idf, embeddings, word2vec, glove, transformers, bert, gpt, t5, hugging face, rouge, bleu, meteor s4">
                 <div class="course-card border-warning" onclick="openModal(15)">
-                    <div class="p-4">
-                        <div class="d-flex justify-content-between align-items-start mb-2">
-                            <span class="badge badge-warning rounded-pill">Voie Data</span>
-                            <small class="text-muted"><i class="far fa-clock"></i> 18h</small>
+                    <div class="p-4 h-100 d-flex flex-column">
+                        <div class="d-flex justify-content-between align-items-start mb-3">
+                            <span class="badge badge-warning rounded-pill px-3 py-2">Voie Data</span>
+                            <small class="text-muted fw-bold"><i class="far fa-clock"></i> 18h</small>
                         </div>
-                        <h5 class="fw-bold text-dark mb-1">Machine Learning & NLP</h5>
-                        <p class="text-secondary small mb-3"><i class="fas fa-user-tie me-1"></i> Didier Jeannel</p>
-                        <div class="mt-3"><span class="index-badge">NLP</span><span class="index-badge">TF-IDF</span><span class="index-badge">Embeddings</span><span class="index-badge">Word2Vec</span><span class="index-badge">...</span></div>
+                        <h5 class="fw-bold text-dark mb-2">Machine Learning & NLP</h5>
+                        <p class="text-secondary small mb-3 flex-grow-1"><i class="fas fa-user-tie me-2 text-primary opacity-50"></i>Didier Jeannel</p>
+                        <div class="mt-auto pt-2 border-top"><span class="index-badge">NLP</span><span class="index-badge">TF-IDF</span><span class="index-badge">Embeddings</span><span class="index-badge">Word2Vec</span><span class="index-badge">...</span></div>
                     </div>
                 </div>
             </div>
     
             <div class="col-md-6 col-lg-4 course-item" data-index="recent advances in data sciences theo lopes quintas papers, pytorch, calibration, tokenization, llm, soutenance, notebook, latex s4">
                 <div class="course-card border-warning" onclick="openModal(16)">
-                    <div class="p-4">
-                        <div class="d-flex justify-content-between align-items-start mb-2">
-                            <span class="badge badge-warning rounded-pill">Voie Data</span>
-                            <small class="text-muted"><i class="far fa-clock"></i> 21h</small>
+                    <div class="p-4 h-100 d-flex flex-column">
+                        <div class="d-flex justify-content-between align-items-start mb-3">
+                            <span class="badge badge-warning rounded-pill px-3 py-2">Voie Data</span>
+                            <small class="text-muted fw-bold"><i class="far fa-clock"></i> 21h</small>
                         </div>
-                        <h5 class="fw-bold text-dark mb-1">Recent Advances in Data Sciences</h5>
-                        <p class="text-secondary small mb-3"><i class="fas fa-user-tie me-1"></i> Theo Lopes Quintas</p>
-                        <div class="mt-3"><span class="index-badge">Papers</span><span class="index-badge">PyTorch</span><span class="index-badge">Calibration</span><span class="index-badge">Tokenization</span><span class="index-badge">...</span></div>
+                        <h5 class="fw-bold text-dark mb-2">Recent Advances in Data Sciences</h5>
+                        <p class="text-secondary small mb-3 flex-grow-1"><i class="fas fa-user-tie me-2 text-primary opacity-50"></i>Theo Lopes Quintas</p>
+                        <div class="mt-auto pt-2 border-top"><span class="index-badge">Papers</span><span class="index-badge">PyTorch</span><span class="index-badge">Calibration</span><span class="index-badge">Tokenization</span><span class="index-badge">...</span></div>
                     </div>
                 </div>
             </div>
     
             <div class="col-md-6 col-lg-4 course-item" data-index="renforcement learning gabriel turinici mdp, bellman, hjb, bandits, q-learning, dqn, sarsa, actor-critic, gymnasium, alignement s4">
                 <div class="course-card border-warning" onclick="openModal(17)">
-                    <div class="p-4">
-                        <div class="d-flex justify-content-between align-items-start mb-2">
-                            <span class="badge badge-warning rounded-pill">Voie Data</span>
-                            <small class="text-muted"><i class="far fa-clock"></i> 21h</small>
+                    <div class="p-4 h-100 d-flex flex-column">
+                        <div class="d-flex justify-content-between align-items-start mb-3">
+                            <span class="badge badge-warning rounded-pill px-3 py-2">Voie Data</span>
+                            <small class="text-muted fw-bold"><i class="far fa-clock"></i> 21h</small>
                         </div>
-                        <h5 class="fw-bold text-dark mb-1">Renforcement Learning</h5>
-                        <p class="text-secondary small mb-3"><i class="fas fa-user-tie me-1"></i> Gabriel Turinici</p>
-                        <div class="mt-3"><span class="index-badge">MDP</span><span class="index-badge">Bellman</span><span class="index-badge">HJB</span><span class="index-badge">Bandits</span><span class="index-badge">...</span></div>
+                        <h5 class="fw-bold text-dark mb-2">Renforcement Learning</h5>
+                        <p class="text-secondary small mb-3 flex-grow-1"><i class="fas fa-user-tie me-2 text-primary opacity-50"></i>Gabriel Turinici</p>
+                        <div class="mt-auto pt-2 border-top"><span class="index-badge">MDP</span><span class="index-badge">Bellman</span><span class="index-badge">HJB</span><span class="index-badge">Bandits</span><span class="index-badge">...</span></div>
                     </div>
                 </div>
             </div>
     
         </div>
-        <div id="noResult" class="text-center text-muted mt-5" style="display:none;">
-            <h4>😕 Aucun cours ne correspond à votre recherche.</h4>
+        <div id="noResult" class="text-center text-muted mt-5 py-5" style="display:none;">
+            <i class="fas fa-search fa-3x mb-3 opacity-25"></i>
+            <h4>Aucun cours ne correspond à votre recherche.</h4>
+            <p>Essayez un autre mot-clé.</p>
         </div>
     </div>
 
@@ -477,23 +531,27 @@
         <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title fs-4" id="modalTitle">Titre</h5>
+                    <div>
+                        <span id="modalBadge" class="badge mb-2">Cat</span>
+                        <h4 class="modal-title" id="modalTitle">Titre</h4>
+                    </div>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <div class="d-flex align-items-center mb-4">
-                        <span id="modalBadge" class="badge me-3 px-3 py-2">Cat</span>
-                        <h6 class="mb-0 text-secondary"><i class="fas fa-chalkboard-teacher me-2"></i><span id="modalProf">Prof</span></h6>
+                    <h6 class="text-primary fw-bold mb-4"><i class="fas fa-chalkboard-teacher me-2"></i>Intervenant : <span id="modalProf" class="text-dark">Prof</span></h6>
+
+                    <div class="mb-4">
+                        <h5 class="fw-bold mb-2"><i class="fas fa-info-circle me-2 text-muted"></i>Résumé</h5>
+                        <p id="modalShortDesc" class="text-muted lead fs-6"></p>
                     </div>
 
-                    <h5 class="fw-bold mb-2">Description</h5>
-                    <p id="modalDesc" class="text-muted mb-4"></p>
+                    <div class="mb-4">
+                        <h5 class="fw-bold mb-2"><i class="fas fa-list-ul me-2 text-muted"></i>Programme détaillé</h5>
+                        <p id="modalLongDesc" class="text-muted" style="white-space: pre-line;"></p>
+                    </div>
 
-                    <h5 class="fw-bold mb-2">Détails (Site)</h5>
-                    <p id="modalDescSite" class="text-muted mb-4"></p>
-
-                    <div class="bg-light p-3 rounded-3 border">
-                        <h6 class="fw-bold text-dark mb-3"><i class="fas fa-tags me-2"></i>Index & Mots-clés associés</h6>
+                    <div class="bg-light p-4 rounded-3 border-0">
+                        <h6 class="fw-bold text-dark mb-3 small text-uppercase ls-1">Mots-clés associés</h6>
                         <div id="modalTags"></div>
                     </div>
                 </div>
@@ -508,7 +566,14 @@
         function filterCourses() {
             let input = document.getElementById('searchInput').value.toLowerCase();
             let items = document.getElementsByClassName('course-item');
+            let feedback = document.getElementById('searchFeedback');
             let visibleCount = 0;
+
+            if (input.length > 0) {
+                feedback.style.display = "inline-block";
+            } else {
+                feedback.style.display = "none";
+            }
 
             for (let i = 0; i < items.length; i++) {
                 let indexContent = items[i].getAttribute('data-index');
@@ -527,19 +592,18 @@
 
             document.getElementById('modalTitle').innerText = c.titre;
             document.getElementById('modalProf').innerText = c.prof;
-            document.getElementById('modalDesc').innerText = c.description;
-            document.getElementById('modalDescSite').innerText = c.description_site || "";
+            document.getElementById('modalShortDesc').innerText = c.description_site || "Pas de résumé disponible.";
+            document.getElementById('modalLongDesc').innerText = c.description;
             
             let badge = document.getElementById('modalBadge');
-            badge.innerText = c.semestre + ' - ' + c.categorie;
+            badge.innerText = c.semestre + ' • ' + c.categorie;
             
-            // COULEURS MODALE
-            if (c.couleur === 'primary') badge.className = 'badge badge-primary me-3 px-3 py-2';
-            else if (c.couleur === 'custom-purple') badge.className = 'badge badge-custom-purple me-3 px-3 py-2';
-            else if (c.couleur === 'warning') badge.className = 'badge badge-warning me-3 px-3 py-2';
-            else badge.className = 'badge bg-secondary me-3 px-3 py-2';
+            if (c.couleur === 'primary') badge.className = 'badge badge-primary px-3 py-2 rounded-pill';
+            else if (c.couleur === 'custom-purple') badge.className = 'badge badge-custom-purple px-3 py-2 rounded-pill';
+            else if (c.couleur === 'warning') badge.className = 'badge badge-warning px-3 py-2 rounded-pill';
+            else badge.className = 'badge bg-secondary px-3 py-2 rounded-pill';
 
-            let tagsHtml = c.index_list.map(tag => `<span class="badge bg-white text-dark border me-1 mb-1 shadow-sm fw-normal">${tag}</span>`).join('');
+            let tagsHtml = c.index_list.map(tag => `<span class="badge bg-white text-dark border me-1 mb-2 shadow-sm fw-normal py-2 px-3">${tag}</span>`).join('');
             document.getElementById('modalTags').innerHTML = tagsHtml;
 
             new bootstrap.Modal(document.getElementById('courseModal')).show();
